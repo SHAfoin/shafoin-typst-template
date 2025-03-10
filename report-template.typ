@@ -21,8 +21,7 @@ set par(leading: 0.25em)
 
 
 
-
-set text(lang: lang, font: heading-fonts,size:38pt, fill: white)
+set text(lang: lang, hyphenate: true)
 place(image("assets/"+ theme + "/" + theme + "-cover.png", width: 100%))
 
 place(
@@ -35,10 +34,11 @@ place(
       dx: 2.30cm,
       dy: 4.55cm,
       stack(
+        
         spacing: 0.6cm,
         block(
-        width: 16.581cm,
-        text( upper(title))
+        width:  16.581cm,
+        text(font: heading-fonts,size:38pt, fill: white, upper(title))
       ),
       block(
         width: 16.581cm,
@@ -47,6 +47,8 @@ place(
       )
       
     )
+
+    
 
     let first-bold = (text) => {
   let words = text.split(" ") // Sépare les mots
@@ -186,24 +188,68 @@ doc
 
 pagebreak()
 
+place(right, image("assets/"+ theme + "/" + theme + "-back.png"))
+set par(justify: false)
+set text(hyphenate: true)
 
+place(
+  dx: 10.51cm,
+      dy: 26.1cm,
+     image("assets/insa-hdf.png", width: 33%))
+
+// top-left
+    place(
+      dx: 11.01cm,
+      dy: 2.15cm,
+      stack(
+        spacing: 0.6cm,
+        block(
+        width: 9.45cm,
+        text(font: heading-fonts,size:32pt, fill: white, upper(title))
+      ),
+      block(
+        width: 9.45cm,
+        text( size:11pt, fill: white, font: normal-fonts, weight: "regular", description)
+      )
+      )
+      
+    )
+
+    // bottom-right
+    place(
+      dx: -10.8cm,
+      dy: 24.765cm,
+      right,
+      box(
+        text(size: 14pt, fill: rgb(theme-color), font: normal-fonts, authors.map(auteur => first-bold(auteur)).join("\n"))
+      )
+    )
+
+    // bottom-right
+    place(
+      right,
+      dx: -10.8cm,
+      dy: 22.37cm,
+      box(
+        text(size: 15pt, fill: rgb(theme-color), font: normal-fonts, weight: "bold", upper(date))
+      )
+    )
 
 }
 
 #show: doc => insa-report(
-  title: "Interférences et diffraction",
+  title: "Coucou et diffraction",
   authors: (
   "Saltel Baptiste",
-  "Doe Jane"
+  "HEYYYYYYYYYYY JaneIFER"
 ),
+  description: lorem(25),
 date: "10 Mars 2025",
 matiere: "Physique",
   doc)
 
 
     = Test1
-
-    == test2
 
     == test 2
 
