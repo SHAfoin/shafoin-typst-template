@@ -111,8 +111,6 @@
 
     #pagebreak()
 
-    
-
     #show heading.where(level: 1): it => [
       #stack(
         spacing: 0.3cm,
@@ -144,15 +142,43 @@
       
       ]
 
+      #show heading.where(level: 3): it => [
+        #text(
+  size: 16pt,
+  font: normal-fonts,
+  weight: "medium", upper(it.body)
+)
 
-    = Test de ma
+  
+     
+      
+      ]
+
+      #show heading.where(level: 4): it => [
+        #text(
+  size: 12pt,
+  font: normal-fonts,
+  fill: rgb(theme-color),
+  weight: "medium", upper(emph(it.body))
+)
+
+  
+     
+      
+      ]
+
+#set text(size: 11pt, weight: "regular")
+#set par(justify: true)
+
+
+    = Test1
 
     == test2
 
-    = test1
+    == test 2
 
-    == test 3
+    === test 3
 
-    === test 4
+    ==== test 4
 
-BABABABABA
+#lorem(200)
