@@ -13,12 +13,12 @@
 
 
 #set text(lang: "fr", font: heading-fonts,size:48pt, fill: white)
-#place(image("assets/" + theme + ".png", width: 101%))
+#place(image("assets/"+ theme + "/" + theme + "-cover.png", width: 100%))
 
 // top-left
     #place(
       dx: 2.20cm,
-      dy: 4.48cm,
+      dy: 4.55cm,
       stack(
         spacing: 0.6cm,
         block(
@@ -53,7 +53,7 @@
     // bottom-right
     #place(
       dx: 13.51cm,
-      dy: 2.12cm,
+      dy: 2.22cm,
       box(
         height: 1.39cm,
         width: 6.28cm,
@@ -73,5 +73,48 @@
     )
 
     #pagebreak()
+
+    
+
+    #set text(lang: "fr", size:14pt, fill: black, font: normal-fonts, weight: "medium")
+
+
+    #place(
+     image("assets/"+ theme + "/" + theme + "-summary.png", width: 100%))
+
+   
+
+    #place(
+      dx: 3.14cm,
+      dy: 1.87cm,
+      box(
+        width: 16.44cm,
+        text(size: 48pt, fill: white, font: heading-fonts, weight: "bold", upper("Sommaire"))
+      )
+    )
+
+    #place(
+      dx: 3.14cm,
+      dy: 6.14cm,
+      box(
+        width: 16.44cm,
+        outline(title: none, fill: line(start: (5%, 0%), end: (95%, 0%), stroke: 1pt + rgb(theme-color)), indent:0.75cm)
+      
+    )     )
+
+    
+
+    #pagebreak()
+
+
+    = Test
+
+    == test2
+
+    = test1
+
+    == test 3
+
+    === test 4
 
 BABABABABA
