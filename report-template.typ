@@ -52,7 +52,7 @@ place(
 
     let first-bold = (text) => {
   let words = text.split(" ") // Sépare les mots
-  upper(strong(words.first())) + " " + words.at(1)
+  upper(strong(words.first()) + " " + words.at(1))
 }
 
 set par(leading: 0.75em)
@@ -63,7 +63,7 @@ set par(leading: 0.75em)
       dy: 20.9cm,
       box(
         height: 4.2cm,
-        text(size: 14pt, fill: white, font: normal-fonts, align(horizon, authors.map(auteur => first-bold(auteur)).join("\n")))
+        text(size: 14pt, fill: white, font: normal-fonts, align(horizon, strong("4A ICY\n") + authors.map(auteur => first-bold(auteur)).join("\n")))
       )
     )
 
@@ -135,7 +135,8 @@ set par(leading: 0.75em)
   rect(
     width: 20%, 
     height: 10pt, 
-    fill: rgb(theme-color) 
+    fill: rgb(theme-color),
+
   )
       )
      
@@ -178,15 +179,95 @@ set par(leading: 0.75em)
      
       
       ]
+set page(
+  margin: (
+  top: 1cm,
+  bottom: 1cm,
+  left: 2.2cm,
+  right: 1.5cm
+),
+    background:  place(
+        dx: 0cm,
+        dy: 0cm,
+        image("assets/"+ theme + "/" + theme + "-side.png")
+      
+      ) 
+      
+      
+      )
+
+set footnote.entry(
+  separator: line(stroke: 2pt + rgb(theme-color))
+)
+
+let normalheader() = context [
+  #strong(upper(text(fill: white, title)))
+  #let headings = query(selector(heading.where(level: 1)).after(here()))
+  #if headings.len() > 0 {
+    let content = headings.first()
+    if content.location().page() == here().page() {
+      text(upper(content.body), size: 12pt, weight: 200, fill: white)
+    } else {
+      let headings = query(selector(heading.where(level: 1)).before(here()))
+      if headings.len() > 0 {
+        let content = headings.last().body
+        text(upper(content), size: 12pt, weight: 200, fill: white)
+      }
+    } 
+  } else {
+    let headings = query(selector(heading.where(level: 1)).before(here()))
+    if headings.len() > 0 {
+      let content = headings.last().body
+      text(upper(content), size: 12pt, weight: 200, fill: white)
+    }
+  }
+]
+
+let headerauthor() = context [
+  #if authors.len() > 1 {
+    text(strong("4A ICY"), size: 12pt,fill: white)
+  } else {
+    text(first-bold(authors.first()), size: 12pt, fill: white)
+  }
+]
+
+set page(footer: context [
+  #rotate(-90deg)[#place(
+    center,
+    dy: -1.8cm,
+    dx: 14cm,
+    normalheader()
+  )]
+
+  #rotate(-90deg)[#place(
+    right,
+    dy: -1.8cm,
+    dx: 28.9cm,
+    headerauthor()
+  )]
+    
+  #place(
+    dx: -1.8cm,
+    dy: -0.7cm,
+    text(fill: white, weight: "semibold", size: 12pt, counter(page).display(
+    "1",
+  ))
+    )
+])
 
 set text(size: 11pt, weight: "regular")
 set par(justify: true)
 
 
+
+
 doc
 
 
+
 pagebreak()
+
+set page(margin: 0cm, background: none)
 
 place(right, image("assets/"+ theme + "/" + theme + "-back.png"))
 set par(justify: false)
@@ -241,7 +322,6 @@ place(
   title: "Coucou et diffraction",
   authors: (
   "Saltel Baptiste",
-  "HEYYYYYYYYYYY JaneIFER"
 ),
   description: lorem(25),
 date: "10 Mars 2025",
@@ -256,3 +336,8 @@ matiere: "Physique",
     === test 3
 
     ==== test 4
+
+    #lorem(800)
+
+    Check the docs for more details.
+#footnote[https://typst.app/docs]
