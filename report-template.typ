@@ -132,7 +132,17 @@
       
       ]
 
+      #show heading.where(level: 2): it => [
+        #text(
+  size: 24pt,
+  font: normal-fonts,
+  weight: "bold", underline(stroke: 6pt + rgb(theme-color) , it.body)
+)
 
+  
+     
+      
+      ]
 
 
     = Test de ma
