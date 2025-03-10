@@ -15,9 +15,14 @@
 #set text(lang: "fr", font: heading-fonts,size:48pt, fill: white)
 #place(image("assets/"+ theme + "/" + theme + "-cover.png", width: 100%))
 
+#place(
+  dx: 1.91cm,
+      dy: 1.96cm,
+     image("assets/insa-hdf.png", width: 33%))
+
 // top-left
     #place(
-      dx: 2.20cm,
+      dx: 2.30cm,
       dy: 4.55cm,
       stack(
         spacing: 0.6cm,
