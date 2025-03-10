@@ -111,8 +111,31 @@
 
     #pagebreak()
 
+    
 
-    = Test
+    #show heading.where(level: 1): it => [
+      #stack(
+        spacing: 0.3cm,
+        text(
+  size: 32pt,
+  font: heading-fonts,
+  weight: "bold", upper(it.body)
+),
+
+  rect(
+    width: 20%, 
+    height: 10pt, 
+    fill: rgb(theme-color) 
+  )
+      )
+     
+      
+      ]
+
+
+
+
+    = Test de ma
 
     == test2
 
