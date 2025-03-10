@@ -1,52 +1,62 @@
 #let heading-fonts = ("Stretch Pro")
 #let normal-fonts = ("Metropolis")
-#let theme = "blue-theme"
-#let theme-color = "#3AA5D8"
 
-#set page("a4", margin: 0cm)
-#set par(leading: 0.25em)
+#let insa-report(
+  theme: "blue-theme",
+  title : none, 
+  lang: "fr",
+  description: none,
+  authors: (),
+  matiere: none,
+  date: none,
+  doc
+) = {
 
-#let authors = (
-  "Saltel Baptiste",
-  "Doe Jane"
-)
+  set document(author: authors, date: auto, title: title)
+
+let theme-color = "#3AA5D8"
+
+set page("a4", margin: 0cm)
+set par(leading: 0.25em)
 
 
-#set text(lang: "fr", font: heading-fonts,size:48pt, fill: white)
-#place(image("assets/"+ theme + "/" + theme + "-cover.png", width: 100%))
 
-#place(
+
+set text(lang: lang, font: heading-fonts,size:38pt, fill: white)
+place(image("assets/"+ theme + "/" + theme + "-cover.png", width: 100%))
+
+place(
   dx: 1.91cm,
       dy: 1.96cm,
      image("assets/insa-hdf.png", width: 33%))
 
 // top-left
-    #place(
+    place(
       dx: 2.30cm,
       dy: 4.55cm,
       stack(
         spacing: 0.6cm,
         block(
         width: 16.581cm,
-        text( upper("Titre de mon rapport"))
+        text( upper(title))
       ),
       block(
         width: 16.581cm,
-        text(size:11pt, fill: white, font: normal-fonts, weight: "regular", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec elit  ligula. Vivamus quis magna est. Ut ac mi ut metus rhoncus condimentum id et nunc. ")
+        text(size:11pt, fill: white, font: normal-fonts, weight: "regular", description)
       )
       )
       
     )
 
-    #let first-bold = (text) => {
+    let first-bold = (text) => {
   let words = text.split(" ") // Sépare les mots
   upper(strong(words.first())) + " " + words.at(1)
 }
 
-#set par(leading: 0.75em)
+set par(leading: 0.75em)
 
     // bottom-right
-    #place(
+    place(
       dx: 3.95cm,
       dy: 20.9cm,
       box(
@@ -56,40 +66,40 @@
     )
 
     // bottom-right
-    #place(
+    place(
       dx: 13.51cm,
       dy: 2.22cm,
       box(
         height: 1.39cm,
         width: 6.28cm,
-        text(size: 15pt, fill: rgb(theme-color), font: normal-fonts, weight: "bold", align(center + horizon, upper("9 Mars 2025")))
+        text(size: 15pt, fill: rgb(theme-color), font: normal-fonts, weight: "bold", align(center + horizon, upper(date)))
       )
     )
 
     // bottom-right
-    #place(
+    place(
       dx: 2.24cm,
-      dy: 26.45cm,
+      dy: 26.32cm,
       box(
         height: 1.39cm,
         width: 6.28cm,
-        text(size: 15pt, fill: rgb(theme-color), font: normal-fonts, weight: "bold", upper("Développement web"))
+        text(size: 15pt, fill: rgb(theme-color), font: normal-fonts, weight: "bold", upper(matiere))
       )
     )
 
-    #pagebreak()
+    pagebreak()
 
     
 
-    #set text(lang: "fr", size:14pt, fill: black, font: normal-fonts, weight: "medium")
+    set text(lang: "fr", size:14pt, fill: black, font: normal-fonts, weight: "medium")
 
 
-    #place(
+    place(
      image("assets/"+ theme + "/" + theme + "-summary.png", width: 100%))
 
    
 
-    #place(
+    place(
       dx: 3.14cm,
       dy: 1.87cm,
       box(
@@ -98,7 +108,7 @@
       )
     )
 
-    #place(
+    place(
       dx: 3.14cm,
       dy: 6.14cm,
       box(
@@ -109,9 +119,9 @@
 
     
 
-    #pagebreak()
+    pagebreak()
 
-    #show heading.where(level: 1): it => [
+    show heading.where(level: 1): it => [
       #stack(
         spacing: 0.3cm,
         text(
@@ -130,7 +140,7 @@
       
       ]
 
-      #show heading.where(level: 2): it => [
+      show heading.where(level: 2): it => [
         #text(
   size: 24pt,
   font: normal-fonts,
@@ -142,7 +152,7 @@
       
       ]
 
-      #show heading.where(level: 3): it => [
+      show heading.where(level: 3): it => [
         #text(
   size: 16pt,
   font: normal-fonts,
@@ -154,7 +164,7 @@
       
       ]
 
-      #show heading.where(level: 4): it => [
+      show heading.where(level: 4): it => [
         #text(
   size: 12pt,
   font: normal-fonts,
@@ -167,8 +177,28 @@
       
       ]
 
-#set text(size: 11pt, weight: "regular")
-#set par(justify: true)
+set text(size: 11pt, weight: "regular")
+set par(justify: true)
+
+
+doc
+
+
+pagebreak()
+
+
+
+}
+
+#show: doc => insa-report(
+  title: "Interférences et diffraction",
+  authors: (
+  "Saltel Baptiste",
+  "Doe Jane"
+),
+date: "10 Mars 2025",
+matiere: "Physique",
+  doc)
 
 
     = Test1
@@ -180,5 +210,3 @@
     === test 3
 
     ==== test 4
-
-#lorem(200)
