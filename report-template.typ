@@ -281,6 +281,29 @@ show quote: it => {
     
 }
 
+show figure.caption : set text(fill: rgb(theme-color))
+
+show figure.where(kind: image) : it =>  {
+  let size
+  if it.body.has("width")  {
+    size = it.body.width
+  } else {
+    size = auto
+  }
+  align(center,
+
+  stack(it.body,
+   rect(
+    fill: rgb(theme-color),
+    width: size,
+    text(fill: white, it.caption.supplement.text + " " + it.caption.counter.display() + " - " + it.caption.body )
+   )
+    
+  ))
+}
+
+
+
 doc
 
 
@@ -369,3 +392,25 @@ matiere: "Physique",
 
     Check the docs for more details.
 #footnote[https://typst.app/docs]
+
+
+#figure(
+  kind: table,
+  rect[Hello],
+  caption: [I am emphasized!],
+)
+
+#columns(2,
+  [#figure(caption: [gros lapin], image("lapin.jpg", width: 100%)),
+#colbreak(),
+#lorem(100)]
+)
+
+#figure(
+  table(
+    columns: 4,
+    [t], [1], [2], [3],
+    [y], [0.3s], [0.4s], [0.8s],
+  ),
+  caption: [Timing results],
+)
