@@ -172,8 +172,11 @@ set par(leading: 0.75em)
   size: 12pt,
   font: normal-fonts,
   fill: rgb(theme-color),
-  weight: "medium", upper(emph(it.body))
+  weight: "medium", upper(emph(it.body)),
+  
 )
+
+#block(below: 0.1cm)
 
   
      
