@@ -281,7 +281,6 @@ show quote: it => {
     
 }
 
-show figure.caption : set text(fill: rgb(theme-color))
 
 show figure.where(kind: image) : it =>  {
   let size
@@ -302,7 +301,16 @@ show figure.where(kind: image) : it =>  {
   ))
 }
 
+set table (
+  stroke  : (x,y)  => 
+    if y > 0 { (top: (paint: rgb("aaaaaa"), thickness: 1pt))} else { none },
 
+)
+
+set table.cell (
+  inset: (x: 1em, y: 0.5em),
+
+  )
 
 doc
 
@@ -414,3 +422,24 @@ matiere: "Physique",
   ),
   caption: [Timing results],
 )
+
+#figure(
+  
+  
+  table(
+    
+
+  columns: 4,
+  table.header([*Name*], [*Value*], [*Unit*], [*Type*]),
+  table.hline(start: 0, stroke : 2pt + blue),
+
+  table.vline(x: 1, stroke : 2pt + blue),
+
+  [John], [], [A], [],
+  [Mary], [], [A], [A],
+  [Robert], [B], [A], [B],
+
+table.hline(start: 0, stroke : 2pt + blue),
+  table.footer([*Name*], [*Value*], [*Unit*], [*Type*]),
+))
+
