@@ -200,7 +200,7 @@ set page(
       )
 
 set footnote.entry(
-  separator: line(stroke: 2pt + rgb(theme-color))
+  separator: line(length: 40%, stroke: 2pt + rgb(theme-color))
 )
 
 let normalheader() = context [
@@ -268,15 +268,15 @@ show quote: it => {
     width: 100%,
     outset: (x: 1.12cm),
     fill: rgb(theme-color+"33"), // Bleu personnalisé
-    inset: 1.5em ,// Ajoute un peu de marge intérieure,
+    inset: (x: 2cm, y: 0.5cm) ,// Ajoute un peu de marge intérieure,
     stack(
       
       
       
       text(it.body), if it.attribution != none {
-      align(right, text( "\n —  " + it.attribution))})
+      box(width: 80%,align(right, emph(text( "\n —  " + it.attribution))))}) )
   )
-    )
+    
   
     
 }
