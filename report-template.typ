@@ -184,7 +184,7 @@ set page(
   top: 1cm,
   bottom: 1cm,
   left: 2.2cm,
-  right: 1.5cm
+  right: 1.12cm
 ),
     background:  place(
         dx: 0cm,
@@ -258,8 +258,25 @@ set page(footer: context [
 set text(size: 11pt, weight: "regular")
 set par(justify: true)
 
-
-
+show quote: it => {
+    align(center, 
+     // Texte en blanc pour le contraste
+  rect(
+    width: 100%,
+    outset: (x: 1.12cm),
+    fill: rgb(theme-color+"33"), // Bleu personnalisé
+    inset: 1.5em ,// Ajoute un peu de marge intérieure,
+    stack(
+      
+      
+      
+      text(it.body), if it.attribution != none {
+      align(right, text( "\n —  " + it.attribution))})
+  )
+    )
+  
+    
+}
 
 doc
 
@@ -337,7 +354,15 @@ matiere: "Physique",
 
     ==== test 4
 
+    Code java à corriger
+    Questions de cours
+    Exercices de math (exemple : sur attribut)
+
     #lorem(800)
+
+    #quote(attribution: [Didier])[
+  bababa bababab bababa babzaab bababa bababa bababa bababa bababa bababa bababa bababa bababa bababa
+]
 
     Check the docs for more details.
 #footnote[https://typst.app/docs]
