@@ -1,3 +1,7 @@
+
+#let theme-color = "#3AA5D8"
+
+
 #let heading-fonts = ("Stretch Pro")
 #let normal-fonts = ("Metropolis")
 
@@ -14,11 +18,12 @@
 
   set document(author: authors, date: auto, title: title)
 
-let theme-color = "#3AA5D8"
+ 
+
+
 
 set page("a4", margin: 0cm)
 set par(leading: 0.25em)
-
 
 
 set text(lang: lang, hyphenate: true)
@@ -312,6 +317,8 @@ set table.cell (
 
   )
 
+  
+
 doc
 
 
@@ -369,6 +376,47 @@ place(
 
 }
 
+#let codeblock(filename: str, content) =  {
+  
+
+
+  set text(fill:white)
+  show raw.line: line => {
+    text()[#line.number]
+    h(2em)
+    line.body
+  }
+
+  align(center, 
+     // Texte en blanc pour le contraste
+  rect(
+    width: 100%,
+    outset: (x: 1.12cm),
+    fill: rgb("161B22"),
+    inset: (x: 0cm, y: 1em) ,// Ajoute un peu de marge intérieure,
+    
+      
+      stack(
+        spacing: 1em,
+        [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(font: "DejaVu Sans Mono", size: 9pt, fill: rgb(theme-color), content.lang)],
+        line(
+  length: 100% + (2*1.12cm),
+  stroke: 1pt + rgb("555555"),
+),
+        align(left, content)
+      )
+      
+      
+  ))
+
+  
+
+  
+
+}
+
+
+
 #show: doc => insa-report(
   title: "Coucou et diffraction",
   authors: (
@@ -378,6 +426,8 @@ place(
 date: "10 Mars 2025",
 matiere: "Physique",
   doc)
+
+  
 
 
     = Test1
@@ -391,6 +441,7 @@ matiere: "Physique",
     Code java à corriger
     Questions de cours
     Exercices de math (exemple : sur attribut)
+    
 
     #lorem(800)
 
@@ -407,6 +458,7 @@ matiere: "Physique",
   rect[Hello],
   caption: [I am emphasized!],
 )
+
 
 #columns(2,
   [#figure(caption: [gros lapin], image("lapin.jpg", width: 100%)),
@@ -431,15 +483,34 @@ matiere: "Physique",
 
   columns: 4,
   table.header([*Name*], [*Value*], [*Unit*], [*Type*]),
-  table.hline(start: 0, stroke : 2pt + blue),
+  table.hline(start: 0, stroke : 2pt + rgb(theme-color)),
 
-  table.vline(x: 1, stroke : 2pt + blue),
+  table.vline(x: 1, stroke : 2pt + rgb(theme-color)),
 
   [John], [], [A], [],
   [Mary], [], [A], [A],
   [Robert], [B], [A], [B],
 
-table.hline(start: 0, stroke : 2pt + blue),
+table.hline(start: 0, stroke : 2pt + rgb(theme-color)),
   table.footer([*Name*], [*Value*], [*Unit*], [*Type*]),
 ))
 
+Bibliography
+
+Cite
+
+Reference
+
+Bullet & numbered list
+
+Term list
+
+
+#codeblock(filename: "Main.java", 
+```java
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
+}
+```)
