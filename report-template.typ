@@ -1,13 +1,7 @@
 
-#let theme-color = "#3AA5D8"
-#let theme = "blue-theme"
-
-
-#let heading-fonts = ("Stretch Pro")
-#let normal-fonts = ("Metropolis")
-
-#let insa-report(
+#let insa-report = (
   theme: "blue-theme",
+  
   title : none, 
   lang: "fr",
   description: none,
@@ -16,11 +10,35 @@
   date: none,
   bib-yaml : none,
   doc
-) = {
+) => {
+
+
+let theme-color = if theme == "blue-theme" {
+
+  "#3AA5D8"
+} else if theme == "pastel-theme" {
+"#AB8EFF"
+
+} else if theme == "green-theme" {
+
+"#49B949"
+} else if theme == "red-theme" {
+
+"#F61359"
+} else {
+  "#3AA5D8"
+}
+  
+
 
   set document(author: authors, date: auto, title: title)
 
- 
+  let heading-fonts = ("Stretch Pro")
+  let normal-fonts = ("Metropolis")
+
+  // if theme == "red-theme" {
+
+  // }
 
 
 
@@ -319,11 +337,31 @@ set table.cell (
 
   )
 
+  set table.hline(
+    stroke:  rgb(theme-color)
+  )
+
+  set table.vline(
+    stroke:  rgb(theme-color)
+  )
+
 show link: it => {
   set text(fill: rgb(theme-color), weight: "medium")
   underline(it)
   }
+
+  set highlight(fill: rgb(theme-color+"77"))
+
   
+ show raw.where(block: false): {
+  box.with(
+  fill: rgb("202628"),
+  inset: (x: 3pt),
+  outset: (y: 4pt),
+  radius: 2pt,
+)}
+
+show raw.where(block: false): set text(fill: white)
 
 doc
 
@@ -384,21 +422,7 @@ place(
       )
     )
 
-    show raw.where(block: false): box.with(
-  fill: luma(240),
-  inset: (x: 3pt, y: 0pt),
-  outset: (y: 3pt),
-  radius: 2pt,
-)
-
-
-// Display block code in a larger block
-// with more padding.
-show raw.where(block: true): block.with(
-  fill: blue,
-  inset: 10pt,
-  radius: 4pt,
-)
+   
 
 
 
@@ -420,16 +444,16 @@ show raw.where(block: true): block.with(
   rect(
     width: 100%,
     outset: (x: 1.12cm),
-    fill: rgb("161B22"),
+    fill: rgb("202628"),
     inset: (x: 0cm, y: 0.7em) ,// Ajoute un peu de marge intérieure,
     
       
       stack(
         spacing: 0.7em,
-        [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(font: "DejaVu Sans Mono", size: 9pt, fill: rgb(theme-color), content.lang)],
+        [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(font: "DejaVu Sans Mono", size: 9pt, content.lang)],
         line(
   length: 100% + (2*1.12cm),
-  stroke: 1pt + rgb("555555"),
+  stroke: 1pt + rgb("444444"),
 ),
         align(left, content)
       )
@@ -450,7 +474,7 @@ show raw.where(block: true): block.with(
 
 #let warning(content) =  {
   box(
-    stroke: (left: 7pt + rgb("FF7E81")),
+    stroke: (left: 7pt + rgb("F61359")),
     inset: (y: 1em, x: 1.3em),
 
     grid(
@@ -464,179 +488,35 @@ show raw.where(block: true): block.with(
   )
 }
 
-#let info(content) =  {
-  box(
-    stroke: (left: 7pt + rgb("FFC13D")),
-    inset: (y: 1em, x: 1.3em),
+  #let info(content) =  {
+    box(
+      stroke: (left: 7pt + rgb("FFC13D")),
+      inset: (y: 1em, x: 1.3em),
 
-    grid(
-  columns: (1em, 96%),
-  gutter: 2em,
-  image("assets/info.png", width: 0.8cm),
-      align(horizon, text(content)
-)
-     )
-    
+      grid(
+    columns: (1em, 96%),
+    gutter: 2em,
+    image("assets/info.png", width: 0.8cm),
+        align(horizon, text(content)
   )
-}
-#let comment(content) =  {
-  box(
-    stroke: (left: 7pt + rgb(theme-color)),
-    inset: (y: 1em, x: 1.3em),
-
-    grid(
-  columns: (1em, 96%),
-  gutter: 2em,
-  image("assets/" + theme + "-comment.png", width: 0.8cm),
-      align(horizon, text(content)
-)
-     )
-    
-  )
-}
-
-// #import "report-template.typ" : insa-report, theme-color, codeblock,
-
-#show: doc => insa-report(
-    title: "Coucou et diffraction",
-    authors: (
-    "Saltel Baptiste",
-  ),
-    description: lorem(25),
-  date: "10 Mars 2025",
-  matiere: "Physique",
-  bib-yaml: "refs.yaml",
-    doc)
-
-  
-
-
-    = Test1 
-
-    == test 2
-
-    === test 3
-
-    ==== test 4
-
-    Code java à corriger
-    Questions de cours
-    Exercices de math (exemple : sur attribut)
-    
-
-    #lorem(800)
-
-    #quote(attribution: [Didier])[
-  bababa bababab bababa babzaab bababa bababa bababa bababa bababa bababa bababa bababa bababa bababa
-]
-
-    Check the docs for more details.
-#footnote[https://typst.app/docs]
-
-
-#figure(
-  kind: table,
-  rect[Hello],
-  caption: [I am emphasized!],
-) <results>
-
-
-#columns(2,
-  [#figure(caption: [gros lapin], image("lapin.jpg", width: 100%)),
-#colbreak(),
-#lorem(100)]
-)
-
-#figure(
-  table(
-    columns: 4,
-    [t], [1], [2], [3],
-    [y], [0.3s], [0.4s], [0.8s],
-  ),
-  caption: [Timing results],
-)
-
-#figure(
-  
-  
-  table(
-    
-
-  columns: 4,
-  table.header([*Name*], [*Value*], [*Unit*], [*Type*]),
-  table.hline(start: 0, stroke : 2pt + rgb(theme-color)),
-
-  table.vline(x: 1, stroke : 2pt + rgb(theme-color)),
-
-  [John], [], [A], [],
-  [Mary], [], [A], [A],
-  [Robert], [B], [A], [B],
-
-table.hline(start: 0, stroke : 2pt + rgb(theme-color)),
-  table.footer([*Name*], [*Value*], [*Unit*], [*Type*]),
-))
-
-Cite (comme la référence)
-
-Reference : uniquement pour les figures, tableaux, équations. Headings aussi mais pas là car ils sont pas numérotés.
-
-#set terms(tight: true)
-
-Term list :
-/ Ligature: A merged glyph.
-/ Kerning: #lorem(50)
-
-
-  `test`
-
-- test
-  - test 2
-- test 3
-
-Numbered list: utiliser le "+" car automatique
-+ test
-  + test
-+ test 2
-  + test 2.1
-+ test 3
-
-référence bibliographique : @harry
-
-Référence vers results : @results
-
-Liens/url :
-#link("https://example.com") \
-#link("https://example.com")[
-  See example.com
-]
-
-
-#codeblock(filename: "Main.java", 
-```java
-public class Main {
-  public static void main(String[] args) {
-    System.out.println("Hello, World!");
+      )
+      
+    )
   }
+
+
+#let comment(theme: "blue-theme", content) = {
+  box(
+    stroke: (left: 7pt + rgb("999999")),
+    inset: (y: 1em, x: 1.3em),
+
+    grid(
+  columns: (1em, 96%),
+  gutter: 2em,
+  image("assets/comment.png", width: 0.8cm),
+      align(horizon, text(content)
+)
+     )
+    
+  )
 }
-```) 
-
-hey
-
-comment faire un #strike[texte barré]
-
-Revenue#sub[yearly]
-1#super[st] try!
-
-#overline[A line over text.]
-This is #highlight[important].
-
-
-#warning(lorem(50))
-
-`rust fn main()`
-
-#raw("Hello, World!")
-
-#comment(lorem(50))
-
-#info(lorem(60))
