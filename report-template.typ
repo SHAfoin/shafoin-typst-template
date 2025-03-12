@@ -393,11 +393,11 @@ place(
     width: 100%,
     outset: (x: 1.12cm),
     fill: rgb("161B22"),
-    inset: (x: 0cm, y: 1em) ,// Ajoute un peu de marge intérieure,
+    inset: (x: 0cm, y: 0.7em) ,// Ajoute un peu de marge intérieure,
     
       
       stack(
-        spacing: 1em,
+        spacing: 0.7em,
         [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(font: "DejaVu Sans Mono", size: 9pt, fill: rgb(theme-color), content.lang)],
         line(
   length: 100% + (2*1.12cm),
