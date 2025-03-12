@@ -13,6 +13,7 @@
   authors: (),
   matiere: none,
   date: none,
+  bib-yaml : none,
   doc
 ) = {
 
@@ -317,11 +318,19 @@ set table.cell (
 
   )
 
+show link: it => {
+  set text(fill: rgb(theme-color), weight: "medium")
+  underline(it)
+  }
   
 
 doc
 
 
+if bib-yaml != none {
+  pagebreak()
+  bibliography(bib-yaml)
+}
 
 pagebreak()
 
@@ -425,12 +434,13 @@ place(
   description: lorem(25),
 date: "10 Mars 2025",
 matiere: "Physique",
+bib-yaml: "refs.yaml",
   doc)
 
   
 
 
-    = Test1
+    = Test1 
 
     == test 2
 
@@ -457,7 +467,7 @@ matiere: "Physique",
   kind: table,
   rect[Hello],
   caption: [I am emphasized!],
-)
+) <results>
 
 
 #columns(2,
@@ -495,15 +505,35 @@ table.hline(start: 0, stroke : 2pt + rgb(theme-color)),
   table.footer([*Name*], [*Value*], [*Unit*], [*Type*]),
 ))
 
-Bibliography
-
 Cite
 
-Reference
+Reference : uniquement pour les figures, tableaux, équations. Headings aussi mais pas là car ils sont pas numérotés.
 
-Bullet & numbered list
+Term list :
+/ Ligature: A merged glyph.
+/ Kerning: A spacing adjustment
+  between two adjacent letters.
 
-Term list
+- test
+  - test 2
+- test 3
+
+Numbered list: utiliser le "+" car automatique
++ test
+  + test
++ test 2
+  + test 2.1
++ test 3
+
+référence bibliographique : @harry
+
+Référence vers results : @results
+
+Liens/url :
+#link("https://example.com") \
+#link("https://example.com")[
+  See example.com
+]
 
 
 #codeblock(filename: "Main.java", 
@@ -513,4 +543,5 @@ public class Main {
     System.out.println("Hello, World!");
   }
 }
-```)
+```) 
+
