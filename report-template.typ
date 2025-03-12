@@ -1,5 +1,6 @@
 
 #let theme-color = "#3AA5D8"
+#let theme = "blue-theme"
 
 
 #let heading-fonts = ("Stretch Pro")
@@ -383,6 +384,24 @@ place(
       )
     )
 
+    show raw.where(block: false): box.with(
+  fill: luma(240),
+  inset: (x: 3pt, y: 0pt),
+  outset: (y: 3pt),
+  radius: 2pt,
+)
+
+
+// Display block code in a larger block
+// with more padding.
+show raw.where(block: true): block.with(
+  fill: blue,
+  inset: 10pt,
+  radius: 4pt,
+)
+
+
+
 }
 
 #let codeblock(filename: str, content) =  {
@@ -418,6 +437,7 @@ place(
       
   ))
 
+
   
 
   
@@ -425,17 +445,68 @@ place(
 }
 
 
+  
+
+
+#let warning(content) =  {
+  box(
+    stroke: (left: 7pt + rgb("FF7E81")),
+    inset: (y: 1em, x: 1.3em),
+
+    grid(
+  columns: (1em, 96%),
+  gutter: 2em,
+  image("assets/warning.png", width: 0.8cm),
+      align(horizon, text(content)
+)
+     )
+    
+  )
+}
+
+#let info(content) =  {
+  box(
+    stroke: (left: 7pt + rgb("FFC13D")),
+    inset: (y: 1em, x: 1.3em),
+
+    grid(
+  columns: (1em, 96%),
+  gutter: 2em,
+  image("assets/info.png", width: 0.8cm),
+      align(horizon, text(content)
+)
+     )
+    
+  )
+}
+#let comment(content) =  {
+  box(
+    stroke: (left: 7pt + rgb(theme-color)),
+    inset: (y: 1em, x: 1.3em),
+
+    grid(
+  columns: (1em, 96%),
+  gutter: 2em,
+  image("assets/" + theme + "-comment.png", width: 0.8cm),
+      align(horizon, text(content)
+)
+     )
+    
+  )
+}
+
+// #import "report-template.typ" : insa-report, theme-color, codeblock,
 
 #show: doc => insa-report(
-  title: "Coucou et diffraction",
-  authors: (
-  "Saltel Baptiste",
-),
-  description: lorem(25),
-date: "10 Mars 2025",
-matiere: "Physique",
-bib-yaml: "refs.yaml",
-  doc)
+    title: "Coucou et diffraction",
+    authors: (
+    "Saltel Baptiste",
+  ),
+    description: lorem(25),
+  date: "10 Mars 2025",
+  matiere: "Physique",
+  bib-yaml: "refs.yaml",
+    doc)
 
   
 
@@ -505,14 +576,18 @@ table.hline(start: 0, stroke : 2pt + rgb(theme-color)),
   table.footer([*Name*], [*Value*], [*Unit*], [*Type*]),
 ))
 
-Cite
+Cite (comme la référence)
 
 Reference : uniquement pour les figures, tableaux, équations. Headings aussi mais pas là car ils sont pas numérotés.
 
+#set terms(tight: true)
+
 Term list :
 / Ligature: A merged glyph.
-/ Kerning: A spacing adjustment
-  between two adjacent letters.
+/ Kerning: #lorem(50)
+
+
+  `test`
 
 - test
   - test 2
@@ -545,3 +620,23 @@ public class Main {
 }
 ```) 
 
+hey
+
+comment faire un #strike[texte barré]
+
+Revenue#sub[yearly]
+1#super[st] try!
+
+#overline[A line over text.]
+This is #highlight[important].
+
+
+#warning(lorem(50))
+
+`rust fn main()`
+
+#raw("Hello, World!")
+
+#comment(lorem(50))
+
+#info(lorem(60))
