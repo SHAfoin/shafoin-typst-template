@@ -9,6 +9,7 @@
   matiere: none,  // matière du document ou texte en bas
   date: none,  // date du document
   bib-yaml : none, // référence vers une bibliographie
+  image-cover : none, // image de couverture du rapport, optionnel
   doc
 ) => {
 
@@ -40,6 +41,24 @@
 
   // Image de couverture
   place(image("assets/"+ theme + "/" + theme + "-cover.png", width: 100%))
+
+  if image-cover != none {
+    place(
+    dx: 5cm,
+    dy: 12.75cm,
+
+    box(
+      height: 7cm,
+      width: 13cm,
+      
+
+      align(center, box(stroke: 20pt + white, image(image-cover, height: 100%)))
+
+    )
+    
+    )
+  }
+  
 
   // Logo "INSA-HDF"
   place(
