@@ -34,7 +34,7 @@
   // Page 
   set page("a4", margin: 0cm)
   // Texte
-  set text(lang: lang, hyphenate: true, font: normal-fonts)
+  set text(lang: lang, font: normal-fonts)
 
   // Uniquement pour le titre & description
   set par(leading: 0.25em)
@@ -67,6 +67,8 @@
     image("assets/insa-hdf.png", width: 33%)
   )
 
+  set par(justify: true)
+
   // Titre & Description
   place(
     dx: 2.30cm,
@@ -89,6 +91,7 @@
         text(
           size:11pt, 
           fill: white, 
+          hyphenate: false, 
           weight: "regular", 
           description)
       )
@@ -143,7 +146,7 @@
     dy: 26.32cm,
     box(
       height: 1.39cm,
-      width: 6.28cm,
+      width: 10cm,
       text(
         size: 15pt, 
         fill: rgb(theme-color), 
@@ -201,12 +204,16 @@
   )
 
   pagebreak()
+    set par(justify: false)
 
   // Titre 1
   show heading.where(level: 1): it => [
+    #set par(justify: false)
+    #set par(leading: 0.25em)
     #stack(
       spacing: 0.3cm,
       text(
+        hyphenate: false,
         size: 32pt,
         font: heading-fonts,
         weight: "bold", 
@@ -222,11 +229,14 @@
 
   // Titre 2
   show heading.where(level: 2): it => [
+    #set par(leading: 1em)
     #text(
       size: 24pt,
       font: normal-fonts,
       weight: "bold", 
       underline(
+        evade: false,
+        background: true,
         stroke: 6pt + rgb(theme-color),
         it.body)
     )      
@@ -271,28 +281,28 @@
   )
 
   // Fonction qui renvoie le titre du rapport en gras, et le titre de la page courante si il y en a un
-  let normalheader() = context [
-    #strong(upper(text(fill: white, title)))
-    #let headings = query(selector(heading.where(level: 1)).after(here()))
-    #if headings.len() > 0 {
-      let content = headings.first()
-      if content.location().page() == here().page() {
-        text(upper(content.body), size: 12pt, weight: 200, fill: white)
-      } else {
-        let headings = query(selector(heading.where(level: 1)).before(here()))
-        if headings.len() > 0 {
-          let content = headings.last().body
-          text(upper(content), size: 12pt, weight: 200, fill: white)
-        }
-      } 
-    } else {
-      let headings = query(selector(heading.where(level: 1)).before(here()))
-      if headings.len() > 0 {
-        let content = headings.last().body
-        text(upper(content), size: 12pt, weight: 200, fill: white)
-      }
-    }
-  ]
+  // let normalheader() = context [
+  //   #strong(upper(text(fill: white, title)))
+  //   #let headings = query(selector(heading.where(level: 1)).after(here()))
+  //   #if headings.len() > 0 {
+  //     let content = headings.first()
+  //     if content.location().page() == here().page() {
+  //       text(upper(content.body), size: 12pt, weight: 200, fill: white)
+  //     } else {
+  //       let headings = query(selector(heading.where(level: 1)).before(here()))
+  //       if headings.len() > 0 {
+  //         let content = headings.last().body
+  //         text(upper(content), size: 12pt, weight: 200, fill: white)
+  //       }
+  //     } 
+  //   } else {
+  //     let headings = query(selector(heading.where(level: 1)).before(here()))
+  //     if headings.len() > 0 {
+  //       let content = headings.last().body
+  //       text(upper(content), size: 12pt, weight: 200, fill: white)
+  //     }
+  //   }
+  // ]
 
   // Renvoie l'auteur si il n'y en a qu'un, renvoi le sub-authors sinon   
   let headerauthor() = context [
@@ -310,7 +320,7 @@
       center,
       dy: -1.8cm,
       dx: 14cm,
-      normalheader()
+      strong(upper(text(fill: white, matiere + " : "))) + upper(text(fill: white, title))
     )
   ]
   // Auteur/sub-authors
@@ -441,6 +451,8 @@
   // -------------------------------------------
   // Document
 
+
+
   doc
 
   // -------------------------------------------
@@ -461,7 +473,7 @@
   // Image
   place(right, image("assets/"+ theme + "/" + theme + "-back.png"))
 
-  set par(justify: false)
+  set par(justify: true)
   set text(hyphenate: true)
 
   // Logo INSA-HDF
@@ -531,7 +543,7 @@
 
   set text(fill:white)
   show raw.line: line => {
-    text()[#line.number]
+    text(fill: rgb("ffffff55"))[#line.number]
     h(2em)
     line.body
   }
