@@ -45,10 +45,10 @@
   if image-cover != none {
     place(
     dx: 5cm,
-    dy: 12.75cm,
+    dy: 12.23cm,
 
     box(
-      height: 7cm,
+      height: 8.08cm,
       width: 13cm,
       
 
