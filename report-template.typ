@@ -162,7 +162,7 @@
   pagebreak()
 
   // Texte du sommaire
-  set text(size:14pt, fill: black, weight: "medium")
+  set text(size:12pt, fill: black, weight: "medium")
 
 
   // Background sommaire
@@ -194,6 +194,7 @@
       width: 16.44cm,
       outline(
         title: none, 
+        depth: 3,
         fill: 
         line(
           start: (5%, 0%), 
@@ -210,7 +211,9 @@
   show heading.where(level: 1): it => [
     #set par(justify: false)
     #set par(leading: 0.25em)
-    #stack(
+    #block(
+      below : 1em,
+      stack(
       spacing: 0.3cm,
       text(
         hyphenate: false,
@@ -220,17 +223,21 @@
         upper(it.body)
       ),
       rect(
-        width: 20%, 
+        width: 30%, 
         height: 10pt, 
         fill: rgb(theme-color),
       )
     )  
+    ) 
+    
   ]
 
   // Titre 2
   show heading.where(level: 2): it => [
-    #set par(leading: 1em)
-    #text(
+    #set par(leading: 0.5em)
+    #block(
+      below: 1.7em,
+      text(
       size: 24pt,
       font: normal-fonts,
       weight: "bold", 
@@ -239,29 +246,38 @@
         background: true,
         stroke: 6pt + rgb(theme-color),
         it.body)
-    )      
+    )     
+    )
+     
   ]
 
   // Titre 3
   show heading.where(level: 3): it => [
-    #text(
+    #block(
+      below: 1em,
+      text(
       size: 16pt,
       font: normal-fonts,
-      weight: "medium", 
+      weight: "bold", 
       upper(it.body)
     )
+    )
+    
   ]
 
   // Titre 4
   show heading.where(level: 4): it => [
-    #text(
+    #block(
+      below: 1.3em,
+      text(
       size: 12pt,
       font: normal-fonts,
       fill: rgb(theme-color),
       weight: "medium", 
-      upper(emph(it.body)),
+      it.body,
   )
-    #block(below: 0.1cm)
+    )
+    
   ]
 
   // Margin des pages pour écrire
@@ -396,7 +412,7 @@
       )
     )
   }
-
+  show table: set align(left)
   // Tableau
   set table (
     stroke  : (x,y)  => 
@@ -587,8 +603,8 @@
     inset: (y: 1em, x: 1.3em),
 
     grid(
-  columns: (0.5em, 96%),
-  gutter: 2em,
+  columns: (0.5em, 95%),
+  gutter: 2.7em,
   image("assets/warning.png", width: 0.8cm),
       align(horizon, text(content)
 )
@@ -603,8 +619,8 @@
       inset: (y: 0.5em, x: 1.3em),
 
       grid(
-    columns: (1em, 96%),
-    gutter: 2em,
+    columns: (1em, 95%),
+    gutter: 3em,
     image("assets/info.png", width: 0.8cm),
         align(horizon, text(content)
   )
@@ -620,8 +636,8 @@
     inset: (y: 0.5em, x: 1.3em),
 
     grid(
-  columns: (1em, 96%),
-  gutter: 2em,
+  columns: (1em, 95%),
+  gutter: 2.3em,
   image("assets/comment.png", width: 0.8cm),
       align(horizon, text(content)
 )
