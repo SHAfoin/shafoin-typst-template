@@ -626,7 +626,7 @@
       inset: (y: 0.5em, x: 1.3em),
 
       grid(
-    columns: (1em, 95%),
+    columns: (0.2em, 95%),
     gutter: 3em,
     image("assets/info.png", width: 0.8cm),
         align(horizon, text(content)
