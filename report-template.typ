@@ -67,7 +67,7 @@
     image("assets/insa-hdf.png", width: 33%)
   )
 
-  set par(justify: true)
+  set par(justify: false)
 
   // Titre & Description
   place(
@@ -88,12 +88,13 @@
       // Description
       block(
         width: 16.581cm,
-        text(
+        par(justify: true, text(
           size:11pt, 
           fill: white, 
           hyphenate: false, 
           weight: "regular", 
-          description)
+          description))
+        
       )
     )   
   )
