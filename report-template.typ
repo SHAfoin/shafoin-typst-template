@@ -161,21 +161,26 @@
 
   pagebreak()
 
-  // Texte du sommaire
-  set text(size:12pt, fill: black, weight: "medium")
-
-
-  // Background sommaire
-  place(
-    image("assets/"+ theme + "/" + theme + "-summary.png", width: 100%)
+  // Margin du contenu du sommaire
+  set page(
+    margin: (
+      top: 6.14cm,
+      bottom: 1cm,
+      left: 3.14cm,
+      right: 1.12cm
+    ),
+    // Arrière plan
+    background: place(
+        dx: 0cm,
+        dy: 0cm,
+        image("assets/"+ theme + "/" + theme + "-summary.png")
+    )  
   )
 
-  // Sommaire
-  place(
-    dx: 3.14cm,
-    dy: 1.87cm,
-    box(
-      width: 16.44cm,
+  // Header "SOMMAIRE" en haut
+  set page(header: context [
+    #place(
+      dy: 2cm,
       text(
         size: 48pt, 
         fill: white, 
@@ -183,29 +188,30 @@
         weight: "bold", 
         upper("Sommaire"))
     )
-  )
+  ])
+
+  // Texte du sommaire
+  set text(size:12pt, fill: black, weight: "medium")
   
   // Contenu du sommaire
-
-  place(
-    dx: 3.14cm,
-    dy: 6.14cm,
-    box(
-      width: 16.44cm,
-      outline(
-        title: none, 
-        depth: 3,
-        fill: 
-        line(
-          start: (5%, 0%), 
-          end: (95%, 0%), 
-          stroke: 1pt + rgb(theme-color)), 
-        indent:0.75cm)
-    )     
-  )
+  outline(
+    title: none, 
+    depth: 3,
+    fill: 
+    line(
+      start: (5%, 0%), 
+      end: (95%, 0%), 
+      stroke: 1pt + rgb(theme-color)), 
+    indent:0.75cm)
 
   pagebreak()
-    set par(justify: false)
+
+// ------------ PAGES DU RAPPORT
+
+  // Supprimer le header du sommaire
+  set page(header: context [])
+
+  set par(justify: false)
 
   // Titre 1
   show heading.where(level: 1): it => [
