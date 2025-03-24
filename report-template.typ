@@ -438,12 +438,12 @@
 
   // Lignes horizontales ajoutées manuellement
   set table.hline(
-    stroke:  rgb(theme-color)
+    stroke: 2pt + rgb(theme-color)
   )
 
   // Lignes verticales ajoutées manuellement
   set table.vline(
-    stroke:  rgb(theme-color)
+    stroke:  2pt+  rgb(theme-color)
   )
 
   // Liens
