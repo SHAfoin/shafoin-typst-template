@@ -144,16 +144,18 @@
   // Matiere
   place(
     dx: 2.24cm,
-    dy: 26.32cm,
+    dy: 25.95cm,
     box(
-      height: 1.39cm,
+      height: 1cm,
       width: 10cm,
-      text(
+      // fill: red,
+      align(horizon, text(
         size: 15pt, 
         fill: rgb(theme-color), 
         font: normal-fonts, 
         weight: "bold", 
-        upper(matiere))
+        upper(matiere)))
+      
     )
   )
 
