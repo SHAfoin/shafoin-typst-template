@@ -409,6 +409,8 @@
       auto
     }
     align(center,
+    block(
+      breakable: false,
       stack(it.body,
         rect(
           fill: rgb(theme-color),
@@ -418,7 +420,7 @@
             it.caption.supplement.text + " " + it.caption.counter.display() + " - " + it.caption.body 
           )
         )
-      )
+      ))
     )
   }
   show table: set align(left)
