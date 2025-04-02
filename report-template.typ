@@ -202,8 +202,8 @@
     depth: 3,
     fill: 
     line(
-      start: (5%, 0%), 
-      end: (95%, 0%), 
+      start: (10pt, 0% + 0pt),
+      length: 100% - 20pt,
       stroke: 1pt + rgb(theme-color)), 
     indent:0.75cm)
 
