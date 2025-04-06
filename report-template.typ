@@ -485,6 +485,8 @@
   // -------------------------------------------
   // Si il y a une bibliographie, on la place à la fin
 
+  set bibliography(full: true)
+
   if bib-yaml != none {
     pagebreak()
     bibliography(bib-yaml)
