@@ -45,14 +45,14 @@
   if image-cover != none {
     place(
     dx: 5cm,
-    dy: 12.23cm,
+    dy: 11.88cm,
 
     box(
-      height: 8.08cm,
+      height: 8.78cm,
       width: 13cm,
-      
 
-      align(center, box(stroke: 20pt + white, image(image-cover, height: 100%)))
+
+      align(center, box(      fill: rgb(255, 255, 255, 120), image(image-cover, height: 100%)))
 
     )
     
