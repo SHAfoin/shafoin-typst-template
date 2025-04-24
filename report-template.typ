@@ -200,7 +200,6 @@
   outline(
     title: none, 
     depth: 3,
-    fill: 
     line(
       start: (10pt, 0% + 0pt),
       length: 100% - 20pt,
@@ -377,7 +376,7 @@
   set sub(size: 0.7em)
 
   // Delimiteur
-  set line (stroke: rgb(theme-color))
+  set line(stroke: rgb(theme-color))
 
   // Style des footnote
   set footnote.entry(
@@ -425,7 +424,7 @@
   }
   show table: set align(left)
   // Tableau
-  set table (
+  set table(
     stroke  : (x,y)  => 
       if y > 0 { 
         (top: 
@@ -437,7 +436,7 @@
   )
 
   // Cellules des tableaux
-  set table.cell (
+  set table.cell(
     inset: (x: 1em, y: 0.5em),
   )
 
