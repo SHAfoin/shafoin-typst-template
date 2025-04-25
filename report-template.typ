@@ -195,15 +195,17 @@
 
   // Texte du sommaire
   set text(size:12pt, fill: black, weight: "medium")
-  
+
+  set outline.entry(fill : line(
+      start: (5%, 0%), 
+      end: (95%, 0%), 
+      stroke: 1pt + rgb(theme-color)), )
+
   // Contenu du sommaire
   outline(
     title: none, 
     depth: 3,
-    line(
-      start: (10pt, 0% + 0pt),
-      length: 100% - 20pt,
-      stroke: 1pt + rgb(theme-color)), 
+    
     indent:0.75cm)
 
   pagebreak()
