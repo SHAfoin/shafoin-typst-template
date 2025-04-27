@@ -12,7 +12,7 @@
   description: none, // description du document
   authors: (),  // liste des auteurs
   matiere: none,  // matière du document ou texte en bas
-  date: none,  // date du document
+  date: none,  // date du document, type: datetime
   bib-yaml : none, // référence vers une bibliographie
   image-cover : none, // image de couverture du rapport, optionnel
   doc
