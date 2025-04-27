@@ -1,4 +1,3 @@
-
 #import "../report-template.typ" : *
 
 #show: doc => insa-report(
@@ -9,7 +8,7 @@
   ),
   sub-authors: "4A ICY",  // texte optionnel au dessus des auteurs ex : groupe 2, 4A ICY 
   description: "Présentation du thème custom typst", // description du document
-  date: "10 Mars 2025", // date du document
+  date: datetime(day: 10, month: 3, year: 2025), // date du document
   matiere: "Matière", // matière du document ou texte en bas
   bib-yaml: "./exemple/refs.yaml",  // référence vers une bibliographie
   doc
