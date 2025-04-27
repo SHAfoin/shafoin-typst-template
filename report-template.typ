@@ -1,3 +1,8 @@
+#let format-date(date) = {
+  /* formate date avec les mois français (car pas encore supporté nativement dans typst) */
+  let months = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre")
+  date.display("[day] ") + months.at(date.month() - 1) + date.display(" [year]")
+}
 
 #let insa-report = (
   theme: "blue-theme",  // theme parmi pastel-theme, blue-theme, green-theme, red-theme
@@ -25,9 +30,17 @@
   } else {
     "#3AA5D8"
   }
+
+
+  // Définit la date comme aujourd'hui si elle n'est pas fournie
+  if date == none {
+    date = datetime.today()
+  } 
+  let date_fmt = format-date(date)
+
   
   // Metadatas
-  set document(author: authors, date: auto, title: title)
+  set document(author: authors, date: date, title: title)
   // Polices requises
   let heading-fonts = ("Stretch Pro")
   let normal-fonts = ("Metropolis")
@@ -137,7 +150,7 @@
         weight: "bold", 
         align(
           center + horizon, 
-          upper(date)))
+          upper(date_fmt)))
     )
   )
 
@@ -557,7 +570,7 @@
         fill: rgb(theme-color), 
         font: normal-fonts, 
         weight: "bold", 
-        upper(date))
+        upper(date_fmt))
     )
   )
 
