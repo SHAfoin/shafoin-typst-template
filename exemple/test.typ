@@ -1,4 +1,3 @@
-
 #import "../report-template.typ" : *
 
 #show: doc => insa-report(
@@ -9,7 +8,7 @@
   ),
   sub-authors: "4A ICY",  // texte optionnel au dessus des auteurs ex : groupe 2, 4A ICY 
   description: "Présentation du thème custom typst", // description du document
-  date: "10 Mars 2025", // date du document
+  date: datetime(day: 10, month: 3, year: 2025), // date du document, sous format datetime
   matiere: "Matière", // matière du document ou texte en bas
   bib-yaml: "./exemple/refs.yaml",  // référence vers une bibliographie
   doc
@@ -110,7 +109,7 @@ On peut #strike[barrer du texte], mettre du texte en *gras*, en _italique_, ou *
 *Code inline* : Possibilité de taper du code inline comme `test` et même de lui mettre la syntaxe de son langage avec ```rust fn main()```.
 
 *Block de code* : Possibilité de mettre un block de code avec la syntaxe de son langage. On peut préciser un nom de fichier aussi.
-#codeblock( filename: "Main.java",
+#codeblock( filename: "Main.java", line_number: false,
 ```java
 public class Main {
   public static void main(String[] args) {

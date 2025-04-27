@@ -1,17 +1,33 @@
+#let format-date(date) = {
+  /* formate date avec les mois français (car pas encore supporté nativement dans typst) */
+  let months = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre")
+  date.display("[day] ") + months.at(date.month() - 1) + date.display(" [year]")
+}
 
 #let insa-report = (
-  theme: "blue-theme",  // theme parmi pastel-theme, blue-theme, green-theme, red-theme
-  sub-authors: "4A ICY",  // texte optionnel au dessus des auteurs ex : groupe 2, 4A ICY
   title : none,   // titre du document
-  lang: "fr", // langue du document
-  description: none, // description du document
+  date: none,  // date du document, type: datetime
+
   authors: (),  // liste des auteurs
+  sub-authors: "4A ICY",  // texte optionnel au dessus des auteurs ex : groupe 2, 4A ICY
   matiere: none,  // matière du document ou texte en bas
-  date: none,  // date du document
+
+  description: none, // description du document
+
   bib-yaml : none, // référence vers une bibliographie
+
+  lang: "fr", // langue du document
+  heading_numbering: false, // option de numérotation des titres
+
+  theme: "blue-theme",  // theme parmi pastel-theme, blue-theme, green-theme, red-theme
   image-cover : none, // image de couverture du rapport, optionnel
+
   doc
 ) => {
+
+  if heading_numbering {
+    set heading(numbering: "I.A.1.")
+  }
 
   // Couleur du thème
   let theme-color = if theme == "blue-theme" {
@@ -25,9 +41,17 @@
   } else {
     "#3AA5D8"
   }
+
+
+  // Définit la date comme aujourd'hui si elle n'est pas fournie
+  if date == none {
+    date = datetime.today()
+  } 
+  let date_fmt = format-date(date)
+
   
   // Metadatas
-  set document(author: authors, date: auto, title: title)
+  set document(author: authors, date: date, title: title)
   // Polices requises
   let heading-fonts = ("Stretch Pro")
   let normal-fonts = ("Metropolis")
@@ -137,7 +161,7 @@
         weight: "bold", 
         align(
           center + horizon, 
-          upper(date)))
+          upper(date_fmt)))
     )
   )
 
@@ -557,54 +581,40 @@
         fill: rgb(theme-color), 
         font: normal-fonts, 
         weight: "bold", 
-        upper(date))
+        upper(date_fmt))
     )
   )
-
-   
-
-
-
 }
 
-#let codeblock(filename: "", content) =  {
-  
-
-
+#let codeblock(filename: "", line_number: true, content) =  {
   set text(fill:white)
-  show raw.line: line => {
-    text(fill: rgb("ffffff55"))[#line.number]
-    h(2em)
-    line.body
+
+  if line_number {
+    show raw.line: line => {
+      text(fill: rgb("ffffff55"))[#line.number]
+      h(2em)
+      line.body
+    }
   }
 
-  align(center, 
+  align(
+    center, 
      // Texte en blanc pour le contraste
-  rect(
-    width: 100%,
-    outset: (x: 1.12cm),
-    fill: rgb("202628"),
-    inset: (x: 0cm, y: 0.7em) ,// Ajoute un peu de marge intérieure,
-    
-      
-      stack(
-        spacing: 0.7em,
-        [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(font: "DejaVu Sans Mono", size: 9pt, content.lang)],
-        line(
-  length: 100% + (2*1.12cm),
-  stroke: 1pt + rgb("444444"),
-),
-        align(left, content)
-      )
-      
-      
+    rect(
+      width: 100%,
+      outset: (x: 1.12cm),
+      fill: rgb("202628"),
+      inset: (x: 0cm, y: 0.7em), // Ajoute un peu de marge intérieure,
+        stack(
+          spacing: 0.7em,
+          [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(font: "DejaVu Sans Mono", size: 9pt, content.lang)],
+          line(
+            length: 100% + (2*1.12cm),
+            stroke: 1pt + rgb("444444"),
+          ),
+          align(left, content)
+        )
   ))
-
-
-  
-
-  
-
 }
 
 
