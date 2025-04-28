@@ -634,12 +634,12 @@
 #let codeblock(filename: "", line_number: true, content) = {
   set text(fill: white)
 
-  if line_number {
-    show raw.line: line => {
+  show raw.line: line => {
+    if line_number {
       text(fill: rgb("ffffff55"))[#line.number]
       h(2em)
-      line.body
     }
+    line.body
   }
 
   align(
@@ -670,10 +670,6 @@
   )
 }
 
-
-
-
-
 #let warning(content) = {
   box(
     stroke: (left: 7pt + rgb("F61359")),
@@ -699,7 +695,6 @@
     ),
   )
 }
-
 
 #let comment(theme: "blue-theme", content) = {
   box(
