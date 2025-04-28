@@ -652,15 +652,18 @@
       inset: (x: 0cm, y: 0.7em), // Ajoute un peu de marge intérieure,
       stack(
         spacing: 0.7em,
-        [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(
+        // Désactive la barre pour afficher l'output d'un terminal
+        if (content.lang != "bash" or filename != "") { 
+          [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(
             font: "DejaVu Sans Mono",
             size: 9pt,
             content.lang,
-          )],
-        line(
-          length: 100% + (2 * 1.12cm),
-          stroke: 1pt + rgb("444444"),
-        ),
+          )]
+          line(
+            length: 100% + (2 * 1.12cm),
+            stroke: 1pt + rgb("444444"),
+          )
+        },
         align(left, content),
       ),
     ),
