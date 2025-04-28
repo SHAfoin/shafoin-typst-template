@@ -355,30 +355,6 @@
     ),
   )
 
-  // Fonction qui renvoie le titre du rapport en gras, et le titre de la page courante si il y en a un
-  // let normalheader() = context [
-  //   #strong(upper(text(fill: white, title)))
-  //   #let headings = query(selector(heading.where(level: 1)).after(here()))
-  //   #if headings.len() > 0 {
-  //     let content = headings.first()
-  //     if content.location().page() == here().page() {
-  //       text(upper(content.body), size: 12pt, weight: 200, fill: white)
-  //     } else {
-  //       let headings = query(selector(heading.where(level: 1)).before(here()))
-  //       if headings.len() > 0 {
-  //         let content = headings.last().body
-  //         text(upper(content), size: 12pt, weight: 200, fill: white)
-  //       }
-  //     }
-  //   } else {
-  //     let headings = query(selector(heading.where(level: 1)).before(here()))
-  //     if headings.len() > 0 {
-  //       let content = headings.last().body
-  //       text(upper(content), size: 12pt, weight: 200, fill: white)
-  //     }
-  //   }
-  // ]
-
   // Renvoie l'auteur si il n'y en a qu'un, renvoie le sub-authors sinon
   let headerauthor() = context [
     #if authors.len() > 1 {
