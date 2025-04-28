@@ -18,7 +18,9 @@
   image-cover: none, // image de couverture du rapport, optionnel
   doc,
 ) => {
-  /* ---[Options générales]--- */
+  /* -------------------------------------------
+  *  Options générales
+  *  ------------------------------------------- */
   // ajoute une numérotation si demandé
   if heading_numbering {
     set heading(numbering: "I.A.1.")
@@ -46,7 +48,7 @@
   let date_fmt = format-date(date)
 
 
-  /* ---[Metadatas]--- */
+  // Metadatas
   set document(author: authors, date: date, title: title)
   // Polices requises
   let heading-fonts = "Stretch Pro"
@@ -56,6 +58,9 @@
   // Texte
   set text(lang: lang, font: normal-fonts)
 
+  /* -------------------------------------------
+  *  Page de présentation
+  *  ------------------------------------------- */
   // Uniquement pour le titre & description
   set par(leading: 0.25em)
 
@@ -192,8 +197,9 @@
     ),
   )
 
-  // -------------------------------------------
-  // Sommaire
+  /* -------------------------------------------
+  *  Sommaire
+  *  ------------------------------------------- */
 
   pagebreak()
 
@@ -250,7 +256,9 @@
 
   pagebreak()
 
-  // ------------ PAGES DU RAPPORT
+  /* -------------------------------------------
+  *  Body du rapport
+  *  ------------------------------------------- */
 
   // Supprimer le header du sommaire
   set page(header: context [])
@@ -371,7 +379,7 @@
   //   }
   // ]
 
-  // Renvoie l'auteur si il n'y en a qu'un, renvoi le sub-authors sinon
+  // Renvoie l'auteur si il n'y en a qu'un, renvoie le sub-authors sinon
   let headerauthor() = context [
     #if authors.len() > 1 {
       text(strong(sub-authors), size: 12pt, fill: white)
@@ -413,8 +421,9 @@
     ],
   )
 
-  // -------------------------------------------
-  // Style pour le document
+  /* -------------------------------------------
+  *  Style pour le document
+  *  ------------------------------------------- */
 
   // Style des textes normaux
   set text(size: 11pt, weight: "regular")
@@ -480,7 +489,9 @@
       ),
     )
   }
+
   show table: set align(left)
+
   // Tableau
   set table(
     stroke: (x, y) => if y > 0 {
@@ -525,14 +536,15 @@
   // Blocs de code inline
   show raw.where(block: false): set text(fill: white)
 
-  // -------------------------------------------
-  // Document
-
+  /* -------------------------------------------
+  *  Document
+  *  ------------------------------------------- */
 
   doc
 
-  // -------------------------------------------
-  // Si il y a une bibliographie, on la place à la fin
+  /* -------------------------------------------
+  *  Bibliographie (si elle existe)
+  *  ------------------------------------------- */
 
   set bibliography(full: true)
 
@@ -541,8 +553,9 @@
     bibliography(bib-yaml)
   }
 
-  // -------------------------------------------
-  // Page de back
+  /* -------------------------------------------
+  *  Page de fin
+  *  ------------------------------------------- */
 
   pagebreak()
 
