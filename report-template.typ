@@ -437,34 +437,26 @@
   }
 
   // Custom caption pour les images uniquement
-  show figure.where(kind: image): it => {
-    let size = if it.body.has("width") {
-      it.body.width
-    } else {
-      auto
-    }
+  show figure.where(kind: image): it => layout(sz => {
+    let size = measure(it.body, width: sz.width).width
+    set text(fill: white)
+
     align(
       center,
-      block(
-        breakable: false,
-        stack(
-          it.body,
-          rect(
-            fill: rgb(theme-color),
-            width: size,
-            text(
-              fill: white,
-              it.caption.supplement.text
-                + " "
-                + it.caption.counter.display()
-                + " - "
-                + it.caption.body,
-            ),
-          ),
+      stack(
+        it.body,
+        rect(
+          fill: rgb(theme-color),
+          width: size,
+          it.caption.supplement.text
+          + " "
+          + it.caption.counter.display()
+          + " - "
+          + it.caption.body,
         ),
       ),
     )
-  }
+  })
 
   show table: set align(left)
 
