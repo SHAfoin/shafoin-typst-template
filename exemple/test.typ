@@ -28,7 +28,7 @@ On peut #strike[barrer du texte], mettre du texte en *gras*, en _italique_, ou *
 *Citation* :
 
 #quote(attribution: [Didier])[
-  _Voilà une joli citation pour illustrer le principe. L'italique est inséré manuellement au cas où l'on ne souhaite pas l'utiliser (pour autre chose qu'une citation par exemple)_
+  _Voilà une jolie citation pour illustrer le principe. L'italique est inséré manuellement au cas où l'on ne souhaite pas l'utiliser (pour autre chose qu'une citation par exemple)_
 ]
 
 *Footnote* : Création d'une petite note de bas de page
@@ -109,7 +109,7 @@ On peut #strike[barrer du texte], mettre du texte en *gras*, en _italique_, ou *
 *Code inline* : Possibilité de taper du code inline comme `test` et même de lui mettre la syntaxe de son langage avec ```rust fn main()```.
 
 *Block de code* : Possibilité de mettre un block de code avec la syntaxe de son langage. On peut préciser un nom de fichier aussi.
-#codeblock( filename: "Main.java", line_number: false,
+#codeblock(filename: "Main.java", line_number: true,
 ```java
 public class Main {
   public static void main(String[] args) {
