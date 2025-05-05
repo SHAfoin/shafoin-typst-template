@@ -240,8 +240,8 @@
 
   set outline.entry(
     fill: line(
-      start: (5%, 0%),
-      end: (95%, 0%),
+      start: (10pt, 0%),
+      end: (100% - 10pt, 0%),
       stroke: 1pt + rgb(theme-color),
     ),
   )
