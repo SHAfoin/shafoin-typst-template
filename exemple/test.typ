@@ -67,7 +67,6 @@ On peut #strike[barrer du texte], mettre du texte en *gras*, en _italique_, ou *
 )
 
 #columns(2,[
-  #lorem(60)
   #figure(
     caption: [Une image d'un gros lapin. La caption des images est différente, avec une barre colorée selon le thème en arrière-plan.], 
     image("lapin.jpg", width: 100%)
