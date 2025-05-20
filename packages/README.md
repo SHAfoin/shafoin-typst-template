@@ -33,6 +33,8 @@ There are 4 different themes available : **blue**, **red**, **green** and **past
 
 #### Example
 
+A complete example illustrating the use of this template and all its features is available in the [github repository](https://github.com/SHAfoin/shafoin-typst-template/blob/main/example/example.pdf).
+
 ```typst
 
 #import "@preview/vibrant-color-report-template:0.1.0": *
@@ -111,4 +113,4 @@ The fonts are licensed under their own licenses.
 
 ### 0.1.0
 
-- Initial template
+- Initial release
