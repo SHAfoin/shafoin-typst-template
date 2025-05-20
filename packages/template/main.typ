@@ -1,6 +1,11 @@
-#import "@preview/vibrant-color-report-template:0.1.0": *
+#import "@preview/vibrant-color-template:0.1.0": *
 
-#show: doc => vibrant-color-report(
+// IMPORTANT : IF YOU WANT TO USE THE ORIGINAL FONTS 
+// - Download the font from https://github.com/SHAfoin/shafoin-typst-template/tree/main/font
+// - On your PC : install them
+// - On typst.app : just  upload them in the "Explore files" section, it will be automatically installed
+
+#show: doc => vibrant-color(
   theme: "green-theme",
   title: "My Report",
   authors: (

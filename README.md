@@ -5,7 +5,7 @@
 
 Le modèle Variant Color est un template Typst qui permet de créer des rapports avec un schéma de couleurs vives. Il a été initialement utilisé pour des rapports étudiants, mais il peut être utilisé pour tout type de rapport.
 
-Il existe 4 thèmes différents : **blue**, **red**, **green** et **pastel**. Il utilise la règle show `vibrant-color-report`.
+Il existe 4 thèmes différents : **blue**, **red**, **green** et **pastel**. Il utilise la règle show `vibrant-color`.
 
 ## Table des matières
 
@@ -40,9 +40,9 @@ Un exemple complet illustrant l'utilisation de ce modèle et toutes ses fonction
 
 ```typst
 
-#import "@preview/vibrant-color-report-template:0.1.0": *
+#import "@preview/vibrant-color-template:0.1.0": *
 
-#show: doc => vibrant-color-report(
+#show: doc => vibrant-color(
   theme: "green-theme",
   title: "Mon Rapport",
   authors: (

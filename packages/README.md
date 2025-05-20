@@ -2,7 +2,7 @@
 
 The Variant Color template is a Typst template that allows you to create reports with a vibrant color scheme. It was originally used for school reports, but it can be used for any type of report.
 
-There are 4 different themes available : **blue**, **red**, **green** and **pastel**. It use the `vibrant-color-report` show rule.
+There are 4 different themes available : **blue**, **red**, **green** and **pastel**. It use the `vibrant-color` show rule.
 
 ## Table of contents
 
@@ -37,9 +37,9 @@ A complete example illustrating the use of this template and all its features is
 
 ```typst
 
-#import "@preview/vibrant-color-report-template:0.1.0": *
+#import "@preview/vibrant-color-template:0.1.0": *
 
-#show: doc => vibrant-color-report(
+#show: doc => vibrant-color(
   theme: "green-theme",
   title: "My Report",
   authors: (

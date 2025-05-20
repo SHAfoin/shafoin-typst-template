@@ -1,4 +1,4 @@
-#let vibrant-color-report = (
+#let vibrant-color = (
   title: none, // title of the document
   date: none, // date of the document, type: datetime
   authors: (), // array of authors
@@ -54,8 +54,8 @@
   // Metadata
   set document(author: authors, date: date, title: title)
   // Required fonts
-  let heading-fonts = ("Stretch Pro", "Arial")
-  let normal-fonts = ("Metropolis", "Arial")
+  let heading-fonts = ("Stretch Pro", "Liberation Sans")
+  let normal-fonts = ("Metropolis", "Liberation Sans")
   // Page
   set page("a4", margin: 0cm)
   // Text
