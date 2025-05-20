@@ -1,6 +1,6 @@
-#import "../report-template.typ" : *
+#import "../vibrant-color-report-template.typ" : *
 
-#show: doc => insa-report(
+#show: doc => vibrant-color-report(
   theme: "green-theme",  // choix du theme parmi pastel-theme, blue-theme, green-theme, red-theme
   title: "Thème custom typst",  // titre du document
   authors: (  // liste des auteurs
@@ -12,6 +12,7 @@
   date: datetime(day: 10, month: 3, year: 2025), // date du document, sous format datetime
   matiere: "Matière", // matière du document ou texte en bas
   bib-yaml: "./example/refs.yaml",  // référence vers une bibliographie
+  logo: "./example/insa-hdf.png",
   doc
 )
 

@@ -1,4 +1,4 @@
-#let insa-report = (
+#let vibrant-color-report = (
   title: none, // title of the document
   date: none, // date of the document, type: datetime
   authors: (), // array of authors
@@ -10,6 +10,7 @@
   heading-numbering: false, // enable heading numbering
   theme: "blue-theme", // theme: pastel-theme, blue-theme, green-theme, red-theme
   image-cover: none, // cover image for the report, optional
+  logo: none, // logo image for the report, optional
   doc,
 ) => {
   /* -------------------------------------------
@@ -84,12 +85,15 @@
     )
   }
 
-  // "INSA-HDF" logo
-  place(
+  // logo
+  if logo != none {
+       place(
     dx: 1.91cm,
-    dy: 1.96cm,
-    image("assets/insa-hdf.png", width: 33%),
+    dy: 1.90cm,
+    image(logo, width: 33%),
   )
+  }
+ 
 
   set par(justify: false)
 
@@ -525,12 +529,16 @@
   set par(justify: true)
   set text(hyphenate: true)
 
-  // INSA-HDF logo
-  place(
+  // Logo
+  if logo != none { 
+    place(
+      left + bottom,
     dx: 10.51cm,
-    dy: 26.1cm,
-    image("assets/insa-hdf.png", width: 33%),
+    dy: -1.5cm,
+    image(logo, width: 45%),
   )
+  }
+  
 
   // Title & Description
   place(
