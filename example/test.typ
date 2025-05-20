@@ -6,11 +6,12 @@
   authors: (  // liste des auteurs
     "SHAfoin Shafoin",
   ),
+  lang: "fr",
   sub-authors: "4A ICY",  // texte optionnel au dessus des auteurs ex : groupe 2, 4A ICY 
   description: "Présentation du thème custom typst", // description du document
   date: datetime(day: 10, month: 3, year: 2025), // date du document, sous format datetime
   matiere: "Matière", // matière du document ou texte en bas
-  bib-yaml: "./exemple/refs.yaml",  // référence vers une bibliographie
+  bib-yaml: "./example/refs.yaml",  // référence vers une bibliographie
   doc
 )
 
