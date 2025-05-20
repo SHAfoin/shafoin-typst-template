@@ -1,27 +1,26 @@
 #let insa-report = (
-  title: none, // titre du document
-  date: none, // date du document, type: datetime
-  authors: (), // liste des auteurs
-  sub-authors: "4A ICY", // texte optionnel au dessus des auteurs ex : groupe 2, 4A ICY
-  matiere: none, // matière du document ou texte en bas
-  description: none, // description du document
-  bib-yaml: none, // référence vers une bibliographie
-  lang: "fr", // langue du document
-  heading-numbering: false, // option de numérotation des titres
-  theme: "blue-theme", // theme parmi pastel-theme, blue-theme, green-theme, red-theme
-  image-cover: none, // image de couverture du rapport, optionnel
+  title: none, // title of the document
+  date: none, // date of the document, type: datetime
+  authors: (), // array of authors
+  sub-authors: "4A ICY", // optional text above authors, e.g. group 2, 4A ICY
+  matiere: none, // subject of the document or text at the bottom
+  description: none, // document description
+  bib-yaml: none, // reference to a bibliography
+  lang: "fr", // document language
+  heading-numbering: false, // enable heading numbering
+  theme: "blue-theme", // theme: pastel-theme, blue-theme, green-theme, red-theme
+  image-cover: none, // cover image for the report, optional
   doc,
 ) => {
   /* -------------------------------------------
-  *  Options générales
+  *  General
   *  ------------------------------------------- */
-  // ajoute une numérotation si demandé
+  // add numbering to titles if asked
   if heading-numbering {
     set heading(numbering: "I.A.1.")
   }
 
-
-  // Couleur du thème
+  // Theme color
   let theme-color = if theme == "blue-theme" {
     "#3AA5D8"
   } else if theme == "pastel-theme" {
@@ -34,16 +33,13 @@
     "#3AA5D8"
   }
 
-
   let format-date(date) = {
-    /* formate date avec les mois français (car pas encore supporté nativement dans typst) */
+    /* formats date with French months (since not yet natively supported in typst) */
     let months = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre")
     date.display("[day] ") + months.at(date.month() - 1) + date.display(" [year]")
   }
 
-  
-
-  // Définit la date comme aujourd'hui si elle n'est pas fournie
+  // Set date to today if not provided
   if date == none {
     date = datetime.today()
   }
@@ -54,38 +50,32 @@
     date_fmt = format-date(date)
   } 
 
-  
-
-
-  // Metadatas
+  // Metadata
   set document(author: authors, date: date, title: title)
-  // Polices requises
+  // Required fonts
   let heading-fonts = "Stretch Pro"
   let normal-fonts = "Metropolis"
   // Page
   set page("a4", margin: 0cm)
-  // Texte
+  // Text
   set text(lang: lang, font: normal-fonts)
 
   /* -------------------------------------------
-  *  Page de présentation
+  *  Cover page
   *  ------------------------------------------- */
-  // Uniquement pour le titre & description
+  // Only for the title & description
   set par(leading: 0.25em)
 
-  // Image de couverture
+  // Cover image
   place(image("assets/" + theme + "/" + theme + "-cover.png", width: 100%))
 
   if image-cover != none {
     place(
       dx: 5cm,
       dy: 11.88cm,
-
       box(
         height: 8.78cm,
         width: 13cm,
-
-
         align(
           center,
           box(fill: rgb(255, 255, 255, 120), image(image-cover, height: 100%)),
@@ -94,8 +84,7 @@
     )
   }
 
-
-  // Logo "INSA-HDF"
+  // "INSA-HDF" logo
   place(
     dx: 1.91cm,
     dy: 1.96cm,
@@ -104,13 +93,13 @@
 
   set par(justify: false)
 
-  // Titre & Description
+  // Title & Description
   place(
     dx: 2.30cm,
     dy: 4.55cm,
     stack(
       spacing: 0.6cm,
-      // Titre
+      // Title
       block(
         width: 16.581cm,
         text(
@@ -138,16 +127,16 @@
     ),
   )
 
-  // Fonction pour mettre en gras le premier mot, utilisé pour les auteurs
+  // Function to bold the first word, used for authors
   let first-bold = text => {
     let words = text.split(" ")
     upper(strong(words.first()) + " " + words.at(1))
   }
 
-  // On remet le leading à 0.75em
+  // Reset leading to 0.75em
   set par(leading: 0.75em)
 
-  // Auteurs
+  // Authors
   place(
     dx: 3.95cm,
     dy: 20.9cm,
@@ -185,7 +174,7 @@
     ),
   )
 
-  // Matiere
+  // Subject
   place(
     dx: 2.24cm,
     dy: 25.95cm,
@@ -207,12 +196,12 @@
   )
 
   /* -------------------------------------------
-  *  Sommaire
+  *  Table of contents
   *  ------------------------------------------- */
 
   pagebreak()
 
-  // Margin du contenu du sommaire
+  // Margin for the content of the table of contents
   set page(
     margin: (
       top: 6.14cm,
@@ -220,16 +209,15 @@
       left: 3.14cm,
       right: 1.12cm,
     ),
-    // Arrière plan
+    // Background
     background: place(
       dx: 0cm,
       dy: 0cm,
       image("assets/" + theme + "/" + theme + "-summary.png"),
     ),
   )
- 
 
-  // Header "SOMMAIRE" en haut
+  // Header "SOMMAIRE" at the top
   set page(
     header: context [
       #place(
@@ -240,13 +228,12 @@
           font: heading-fonts,
           weight: "bold",
           if lang == "fr" [SOMMAIRE] else [SUMMARY],
-          
         ),
       )
     ],
   )
 
-  // Texte du sommaire
+  // Table of contents text
   set text(size: 12pt, fill: black, weight: "medium")
 
   set outline.entry(
@@ -257,26 +244,25 @@
     ),
   )
 
-  // Contenu du sommaire
+  // Table of contents content
   outline(
     title: none,
     depth: 3,
-
     indent: 0.75cm,
   )
 
   pagebreak()
 
   /* -------------------------------------------
-  *  Body du rapport
+  *  Report body
   *  ------------------------------------------- */
 
-  // Supprimer le header du sommaire
+  // Remove the table of contents header
   set page(header: context [])
 
   set par(justify: false)
 
-  // Titre 1
+  // Heading 1
   show heading.where(level: 1): it => [
     #set par(justify: false)
     #set par(leading: 0.25em)
@@ -298,10 +284,9 @@
         ),
       ),
     )
-
   ]
 
-  // Titre 2
+  // Heading 2
   show heading.where(level: 2): it => [
     #set par(leading: 0.5em)
     #block(
@@ -318,10 +303,9 @@
         ),
       ),
     )
-
   ]
 
-  // Titre 3
+  // Heading 3
   show heading.where(level: 3): it => [
     #block(
       below: 1em,
@@ -332,10 +316,9 @@
         upper(it.body),
       ),
     )
-
   ]
 
-  // Titre 4
+  // Heading 4
   show heading.where(level: 4): it => [
     #block(
       below: 1.3em,
@@ -347,10 +330,9 @@
         it.body,
       ),
     )
-
   ]
 
-  // Margin des pages pour écrire
+  // Page margins for writing
   set page(
     margin: (
       top: 1cm,
@@ -366,7 +348,7 @@
     ),
   )
 
-  // Renvoie l'auteur si il n'y en a qu'un, renvoie le sub-authors sinon
+  // Returns the author if there is only one, returns sub-authors otherwise
   let headerauthor() = context [
     #if authors.len() > 1 {
       text(strong(sub-authors), size: 12pt, fill: white)
@@ -375,10 +357,10 @@
     }
   ]
 
-  // Affiche la side-bar (placée dans l'élément "footer")
+  // Displays the side-bar (placed in the "footer" element)
   set page(
     footer: context [
-      // Titre
+      // Title
       #rotate(-90deg)[#place(
           center,
           dy: -1.8cm,
@@ -387,14 +369,14 @@
             + upper(text(fill: white, title)),
         )
       ]
-      // Auteur/sub-authors
+      // Author/sub-authors
       #rotate(-90deg)[#place(
           right,
           dy: -1.8cm,
           dx: 28.9cm,
           headerauthor(),
         )]
-      // Numéro de la page
+      // Page number
       #place(
         dx: -1.8cm,
         dy: -0.7cm,
@@ -409,26 +391,26 @@
   )
 
   /* -------------------------------------------
-  *  Style pour le document
+  *  Style for the document
   *  ------------------------------------------- */
 
-  // Style des textes normaux
+  // Style for normal text
   set text(size: 11pt, weight: "regular")
   set par(justify: true)
 
-  // Texte au dessus et en dessous (ex : 'er' dans '1er')
+  // Superscript and subscript (e.g. 'er' in '1er')
   set super(size: 0.7em)
   set sub(size: 0.7em)
 
-  // Delimiteur
+  // Delimiter
   set line(stroke: rgb(theme-color))
 
-  // Style des footnote
+  // Style for footnotes
   set footnote.entry(
     separator: line(length: 40%, stroke: 2pt + rgb(theme-color)),
   )
 
-  // Citations custom
+  // Custom quotes
   show quote: it => {
     align(
       center,
@@ -447,7 +429,7 @@
     )
   }
 
-  // Custom caption pour les images uniquement
+  // Custom caption for images only
   show figure.where(kind: image): it => layout(sz => {
     let size = measure(it.body, width: sz.width).width
     set text(fill: white)
@@ -468,7 +450,7 @@
 
   show table: set align(left)
 
-  // Tableau
+  // Table
   set table(
     stroke: (x, y) => if y > 0 {
       (
@@ -479,16 +461,16 @@
     },
   )
 
-  // Cellules des tableaux
+  // Table cells
   set table.cell(inset: (x: 1em, y: 0.5em))
 
-  // Lignes horizontales ajoutées manuellement
+  // Manually added horizontal lines
   set table.hline(stroke: 2pt + rgb(theme-color))
 
-  // Lignes verticales ajoutées manuellement
+  // Manually added vertical lines
   set table.vline(stroke: 2pt + rgb(theme-color))
 
-  // Liens
+  // Links
   show link: it => {
     set text(
       fill: rgb(theme-color),
@@ -497,7 +479,7 @@
     underline(it)
   }
 
-  // Surligner
+  // Highlight
   set highlight(fill: rgb(theme-color + "77"))
 
   show raw.where(block: false): {
@@ -509,7 +491,7 @@
     )
   }
 
-  // Blocs de code inline
+  // Inline code blocks
   show raw.where(block: false): set text(fill: white)
 
   /* -------------------------------------------
@@ -519,7 +501,7 @@
   doc
 
   /* -------------------------------------------
-  *  Bibliographie (si elle existe)
+  *  Bibliography (if it exists)
   *  ------------------------------------------- */
 
   set bibliography(full: true)
@@ -530,7 +512,7 @@
   }
 
   /* -------------------------------------------
-  *  Page de fin
+  *  End page
   *  ------------------------------------------- */
 
   pagebreak()
@@ -543,20 +525,20 @@
   set par(justify: true)
   set text(hyphenate: true)
 
-  // Logo INSA-HDF
+  // INSA-HDF logo
   place(
     dx: 10.51cm,
     dy: 26.1cm,
     image("assets/insa-hdf.png", width: 33%),
   )
 
-  // Titre & Description
+  // Title & Description
   place(
     dx: 11.01cm,
     dy: 2.15cm,
     stack(
       spacing: 0.6cm,
-      // Titre
+      // Title
       block(
         width: 9.45cm,
         text(font: heading-fonts, size: 32pt, fill: white, upper(title)),
@@ -575,7 +557,7 @@
     ),
   )
 
-  // Auteurs
+  // Authors
   place(
     dx: -10.8cm,
     dy: 24.765cm,
@@ -622,15 +604,15 @@
 
   align(
     center,
-    // Texte en blanc pour le contraste
+    // White text for contrast
     rect(
       width: 100%,
       outset: (x: 1.12cm),
       fill: rgb("202628"),
-      inset: (x: 0cm, y: 0.7em), // Ajoute un peu de marge intérieure,
+      inset: (x: 0cm, y: 0.7em), // Adds a bit of inner margin,
       stack(
         spacing: 0.7em,
-        // Désactive la barre pour afficher l'output d'un terminal
+        // Disable the bar to display terminal output
         if not (term) { 
           [#text(font: "DejaVu Sans Mono", size: 9pt, filename) #h(1fr) #text(
             font: "DejaVu Sans Mono",
@@ -652,7 +634,6 @@
   box(
     stroke: (left: 7pt + rgb("F61359")),
     inset: (y: 1em, x: 1.3em),
-
     grid(
       columns: (0.5em, 95%),
       gutter: 2.7em,
@@ -665,7 +646,6 @@
   box(
     stroke: (left: 7pt + rgb("FFC13D")),
     inset: (y: 0.5em, x: 1.3em),
-
     grid(
       columns: (0.2em, 95%),
       gutter: 3em,
@@ -678,7 +658,6 @@
   box(
     stroke: (left: 7pt + rgb("999999")),
     inset: (y: 0.5em, x: 1.3em),
-
     grid(
       columns: (1em, 95%),
       gutter: 2.3em,
