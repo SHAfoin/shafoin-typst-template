@@ -1,9 +1,3 @@
-#let format-date(date) = {
-  /* formate date avec les mois français (car pas encore supporté nativement dans typst) */
-  let months = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre")
-  date.display("[day] ") + months.at(date.month() - 1) + date.display(" [year]")
-}
-
 #let insa-report = (
   title: none, // titre du document
   date: none, // date du document, type: datetime
@@ -13,7 +7,7 @@
   description: none, // description du document
   bib-yaml: none, // référence vers une bibliographie
   lang: "fr", // langue du document
-  heading_numbering: false, // option de numérotation des titres
+  heading-numbering: false, // option de numérotation des titres
   theme: "blue-theme", // theme parmi pastel-theme, blue-theme, green-theme, red-theme
   image-cover: none, // image de couverture du rapport, optionnel
   doc,
@@ -22,7 +16,7 @@
   *  Options générales
   *  ------------------------------------------- */
   // ajoute une numérotation si demandé
-  if heading_numbering {
+  if heading-numbering {
     set heading(numbering: "I.A.1.")
   }
 
@@ -41,11 +35,26 @@
   }
 
 
+  let format-date(date) = {
+    /* formate date avec les mois français (car pas encore supporté nativement dans typst) */
+    let months = ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre")
+    date.display("[day] ") + months.at(date.month() - 1) + date.display(" [year]")
+  }
+
+  
+
   // Définit la date comme aujourd'hui si elle n'est pas fournie
   if date == none {
     date = datetime.today()
   }
-  let date_fmt = format-date(date)
+
+  let date_fmt = date.display("[month]/[day]/[year]")
+
+  if (lang == "fr") {
+    date_fmt = format-date(date)
+  } 
+
+  
 
 
   // Metadatas
@@ -218,6 +227,7 @@
       image("assets/" + theme + "/" + theme + "-summary.png"),
     ),
   )
+ 
 
   // Header "SOMMAIRE" en haut
   set page(
@@ -229,7 +239,8 @@
           fill: white,
           font: heading-fonts,
           weight: "bold",
-          upper("Sommaire"),
+          if lang == "fr" [SOMMAIRE] else [SUMMARY],
+          
         ),
       )
     ],
