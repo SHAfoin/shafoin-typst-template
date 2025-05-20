@@ -3,7 +3,7 @@
   date: none, // date of the document, type: datetime
   authors: (), // array of authors
   sub-authors: "4A ICY", // optional text above authors, e.g. group 2, 4A ICY
-  matiere: none, // subject of the document or text at the bottom
+  subject: none, // subject of the document or text at the bottom
   description: none, // document description
   bib-yaml: none, // reference to a bibliography
   lang: "fr", // document language
@@ -54,8 +54,8 @@
   // Metadata
   set document(author: authors, date: date, title: title)
   // Required fonts
-  let heading-fonts = "Stretch Pro"
-  let normal-fonts = "Metropolis"
+  let heading-fonts = ("Stretch Pro", "Arial")
+  let normal-fonts = ("Metropolis", "Arial")
   // Page
   set page("a4", margin: 0cm)
   // Text
@@ -193,7 +193,7 @@
           fill: rgb(theme-color),
           font: normal-fonts,
           weight: "bold",
-          upper(matiere),
+          upper(subject),
         ),
       ),
     ),
@@ -369,7 +369,7 @@
           center,
           dy: -1.8cm,
           dx: 14cm,
-          strong(upper(text(fill: white, matiere + " : ")))
+          strong(upper(text(fill: white, subject + " : ")))
             + upper(text(fill: white, title)),
         )
       ]
