@@ -1,7 +1,7 @@
-#import "../vibrant-color-report-template.typ" : *
+#import "../vibrant-color-template.typ" : *
 
-#show: doc => vibrant-color-report(
-  theme: "green-theme",  // choix du theme parmi pastel-theme, blue-theme, green-theme, red-theme
+#show: doc => vibrant-color(
+  theme: "blue-theme",  // choix du theme parmi pastel-theme, blue-theme, green-theme, red-theme
   title: "Thème custom typst",  // titre du document
   authors: (  // liste des auteurs
     "SHAfoin Shafoin",
