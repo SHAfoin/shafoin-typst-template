@@ -37,7 +37,7 @@ A complete example illustrating the use of this template and all its features is
 
 ```typst
 
-#import "@preview/vibrant-color-template:0.1.0": *
+#import "@preview/vibrant-color:0.1.0": *
 
 #show: doc => vibrant-color(
   theme: "green-theme",

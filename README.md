@@ -40,7 +40,7 @@ Un exemple complet illustrant l'utilisation de ce modèle et toutes ses fonction
 
 ```typst
 
-#import "@preview/vibrant-color-template:0.1.0": *
+#import "@preview/vibrant-color:0.1.0": *
 
 #show: doc => vibrant-color(
   theme: "green-theme",
