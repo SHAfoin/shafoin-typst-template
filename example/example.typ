@@ -1,4 +1,4 @@
-#import "../vibrant-color-template.typ" : *
+#import "../vibrant-color.typ" : *
 
 #show: doc => vibrant-color(
   theme: "blue-theme",  // choix du theme parmi pastel-theme, blue-theme, green-theme, red-theme
