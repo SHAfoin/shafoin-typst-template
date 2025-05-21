@@ -75,7 +75,7 @@ De plus, des blocs personnalisés sont disponibles pour afficher des commentaire
 
 #comment("Ceci est un commentaire ou une remarque.")
 
-#codeblock(filename: "custom_block.java", line_number: true,
+#codeblock(filename: "custom_block.java", line-number: true,
 ```java
 public class Main {
   public static void main(String[] args) {
