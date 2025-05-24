@@ -17,9 +17,8 @@
   *  General
   *  ------------------------------------------- */
   // add numbering to titles if asked
-  if heading-numbering {
-    set heading(numbering: "I.A.1.")
-  }
+  let heading-style = "I.A.a.1."
+  set heading(numbering: if heading-numbering {heading-style} else {none})
 
   // Theme color
   let theme-color = if theme == "blue-theme" {
@@ -54,8 +53,8 @@
   // Metadata
   set document(author: authors, date: date, title: title)
   // Required fonts
-  let heading-fonts = ("Stretch Pro", "Liberation Sans")
-  let normal-fonts = ("Metropolis", "Liberation Sans")
+  let heading-fonts = ("Stretch Pro", "Arial", "Liberation Sans")
+  let normal-fonts = ("Metropolis", "Arial", "Liberation Sans")
   // Page
   set page("a4", margin: 0cm)
   // Text
@@ -90,7 +89,7 @@
        place(
     dx: 1.91cm,
     dy: 1.90cm,
-    image(logo, width: 33%),
+    logo,
   )
   }
  
@@ -279,7 +278,9 @@
           size: 32pt,
           font: heading-fonts,
           weight: "bold",
-          upper(it.body),
+          upper(if heading-numbering {
+             context numbering(heading-style, ..counter(heading).get()) + " "
+          } else {} + it.body),
         ),
         rect(
           width: 30%,
@@ -303,7 +304,9 @@
           evade: false,
           background: true,
           stroke: 6pt + rgb(theme-color),
-          it.body,
+          if heading-numbering {
+             context numbering(heading-style, ..counter(heading).get()) + " "
+          } else {} + it.body,
         ),
       ),
     )
@@ -317,7 +320,9 @@
         size: 16pt,
         font: normal-fonts,
         weight: "bold",
-        upper(it.body),
+        if heading-numbering {
+             context numbering(heading-style, ..counter(heading).get()) + " "
+          } else {} + upper(it.body),
       ),
     )
   ]
@@ -331,7 +336,9 @@
         font: normal-fonts,
         fill: rgb(theme-color),
         weight: "medium",
-        it.body,
+        if heading-numbering {
+             context numbering(heading-style, ..counter(heading).get()) + " "
+          } else {} + it.body,
       ),
     )
   ]
@@ -452,7 +459,7 @@
     )
   })
 
-  show table: set align(left)
+  show table: set align(center)
 
   // Table
   set table(
@@ -509,10 +516,11 @@
   *  ------------------------------------------- */
 
   set bibliography(full: true)
+  show bibliography: set heading(numbering: heading-style)
 
   if bib-yaml != none {
     pagebreak()
-    bibliography(bib-yaml)
+    bib-yaml
   }
 
   /* -------------------------------------------
@@ -535,7 +543,7 @@
       left + bottom,
     dx: 10.51cm,
     dy: -1.5cm,
-    image(logo, width: 45%),
+    logo
   )
   }
   
