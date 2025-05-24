@@ -19,20 +19,20 @@ Il existe 4 thèmes différents : **blue**, **red**, **green** et **pastel**. Il
 
 ![Tous les thèmes du rapport](./vibrant-color-themes.png)
 
-| **Paramètre**         | **Description**                                                                            | **Type**    | **Utilisation**                        |
-| --------------------- | ------------------------------------------------------------------------------------------ | ----------- | -------------------------------------- |
-| **title**             | Titre du rapport.                                                                          | str         | "Mon Titre"                            |
-| **date**              | Date du rapport mm/jj/aaaa. Si la langue est le français, la date littérale est supportée. | datetime    | datetime(day: 1, month: 2, year: 2025) |
-| **theme**             | Couleur du thème. 4 thèmes sont actuellement supportés : green, pastel, blue et red.       | str         | "pastel-theme"                         |
-| **authors**           | Tableau d'auteurs "NOM Prénom". La première partie est automatiquement en gras.            | content     | ("DUPONT Jean", "MARTIN Alice")        |
-| **sub-authors**       | Nom du groupe/équipe, utilisé dans le pied de page s'il y a au moins 2 auteurs.            | str         | "EQUIPE 1"                             |
-| **subject**           | Sujet du rapport.                                                                          | str         | "Mathématiques"                        |
-| **description**       | Description du rapport.                                                                    | str         | "Mon super rapport"                    |
-| **bib-yaml**          | Chemin vers un fichier bib.yaml pour la bibliographie automatique.                         | str \| none | "./bib.yaml"                           |
-| **lang**              | Langue pour le correcteur et la date (par défaut "fr").                                    | str         | "fr"                                   |
-| **heading-numbering** | Afficher la numérotation des titres (par défaut false).                                    | bool        | false                                  |
-| **image-cover**       | Chemin optionnel vers une image à ajouter sur la couverture.                               | str \| none | "./images/cover.png"                   |
-| **logo**              | Logo optionnel à afficher sur la couverture et le verso.                                   | str \| none | "./images/logo.png"                    |
+| **Paramètre**         | **Description**                                                                            | **Type**        | **Utilisation**                        |
+| --------------------- | ------------------------------------------------------------------------------------------ | --------------- | -------------------------------------- |
+| **title**             | Titre du rapport.                                                                          | str             | "Mon Titre"                            |
+| **date**              | Date du rapport mm/jj/aaaa. Si la langue est le français, la date littérale est supportée. | datetime        | datetime(day: 1, month: 2, year: 2025) |
+| **theme**             | Couleur du thème. 4 thèmes sont actuellement supportés : green, pastel, blue et red.       | str             | "pastel-theme"                         |
+| **authors**           | Tableau d'auteurs "NOM Prénom". La première partie est automatiquement en gras.            | content         | ("DUPONT Jean", "MARTIN Alice")        |
+| **sub-authors**       | Nom du groupe/équipe, utilisé dans le pied de page s'il y a au moins 2 auteurs.            | str             | "EQUIPE 1"                             |
+| **subject**           | Sujet du rapport.                                                                          | str             | "Mathématiques"                        |
+| **description**       | Description du rapport.                                                                    | str             | "Mon super rapport"                    |
+| **bib-yaml**          | Chemin vers un fichier bib.yaml pour la bibliographie automatique.                         | content \| none | bibliography("refs.yaml")              |
+| **lang**              | Langue pour le correcteur et la date (par défaut "fr").                                    | str             | "fr"                                   |
+| **heading-numbering** | Afficher la numérotation des titres (par défaut false).                                    | bool            | false                                  |
+| **image-cover**       | Chemin optionnel vers une image à ajouter sur la couverture.                               | content \| none | image("cover.png", width: 33%)         |
+| **logo**              | Logo optionnel à afficher sur la couverture et le verso.                                   | content \| none | image("logo.png", width: 33%)          |
 
 #### Exemple
 
@@ -54,8 +54,8 @@ Un exemple complet illustrant l'utilisation de ce modèle et toutes ses fonction
   description: "Ceci est un exemple d'utilisation du template.",
   date: datetime(day: 10, month: 3, year: 2025),
   subject: "Mathématiques",
-  bib-yaml: "./example/refs.yaml",
-  logo: "./example/my_logo.png",
+  bib-yaml: bibliography("refs.yaml"),
+  logo: image("logo.png", width: 33%),
   doc
 )
 

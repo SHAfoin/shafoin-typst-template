@@ -16,20 +16,20 @@ There are 4 different themes available : **blue**, **red**, **green** and **past
 
 ![Every report theme](./thumbnail-colors.png)
 
-| **Parameter**         | **Description**                                                                   | **Type**    | **Usage**                              |
-| --------------------- | --------------------------------------------------------------------------------- | ----------- | -------------------------------------- |
-| **title**             | Title of the report.                                                              | str         | "My Title"                             |
-| **date**              | Date of the report mm/dd/yyyy. If lang is French, litteral date is supported.     | datetime    | datetime(day: 1, month: 2, year: 2025) |
-| **theme**             | Theme color. 4 themes are actually supported : green, pastel, blue and red.       | str         | "pastel-theme"                         |
-| **authors**           | Array of authors "LAST_NAME First_name". The first part is automatically in bold. | content     | ("DOE John", "SMITH Alice")            |
-| **sub-authors**       | Group/team name, used on the footer when there is at least 2 authors.             | str         | "TEAM 1"                               |
-| **subject**           | Topic of the report.                                                              | str         | "Mathematics"                          |
-| **description**       | Description of the report.                                                        | str         | "My very cool report"                  |
-| **bib-yaml**          | Path to a bib.yaml file for automatical bibliography.                             | str \| none | "./bib.yaml"                           |
-| **lang**              | Language for the file corrector and the date (default is "fr").                   | str         | "fr"                                   |
-| **heading-numbering** | Show heading numbering (default is false).                                        | bool        | false                                  |
-| **image-cover**       | Optionnal path to an image to add on the cover.                                   | str \| none | "./images/cover.png"                   |
-| **logo**              | Optionnal logo to display on cover and back.                                      | str \| none | "./images/logo.png"                    |
+| **Parameter**         | **Description**                                                                   | **Type**        | **Usage**                              |
+| --------------------- | --------------------------------------------------------------------------------- | --------------- | -------------------------------------- |
+| **title**             | Title of the report.                                                              | str             | "My Title"                             |
+| **date**              | Date of the report mm/dd/yyyy. If lang is French, litteral date is supported.     | datetime        | datetime(day: 1, month: 2, year: 2025) |
+| **theme**             | Theme color. 4 themes are actually supported : green, pastel, blue and red.       | str             | "pastel-theme"                         |
+| **authors**           | Array of authors "LAST_NAME First_name". The first part is automatically in bold. | content         | ("DOE John", "SMITH Alice")            |
+| **sub-authors**       | Group/team name, used on the footer when there is at least 2 authors.             | str             | "TEAM 1"                               |
+| **subject**           | Topic of the report.                                                              | str             | "Mathematics"                          |
+| **description**       | Description of the report.                                                        | str             | "My very cool report"                  |
+| **bib-yaml**          | Path to a bib.yaml file for automatical bibliography.                             | content \| none | bibliography("refs.yaml")              |
+| **lang**              | Language for the file corrector and the date (default is "fr").                   | str             | "fr"                                   |
+| **heading-numbering** | Show heading numbering (default is false).                                        | bool            | false                                  |
+| **image-cover**       | Optionnal path to an image to add on the cover.                                   | content \| none | image("cover.png", width: 33%)         |
+| **logo**              | Optionnal logo to display on cover and back.                                      | content \| none | image("logo.png", width: 33%)          |
 
 #### Example
 
@@ -51,8 +51,8 @@ A complete example illustrating the use of this template and all its features is
   description: "This is an example of how to use this template.",
   date: datetime(day: 10, month: 3, year: 2025),
   subject: "Mathematics",
-  bib-yaml: "./example/refs.yaml",
-  logo: "./example/my_logo.png",
+  bib-yaml: bibliography("refs.yaml"),
+  logo: image("logo.png", width: 33%),
   doc
 )
 
