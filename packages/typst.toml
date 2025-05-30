@@ -1,6 +1,6 @@
 [package]
 name = "vibrant-color"
-version = "0.1.0"
+version = "0.2.0"
 entrypoint = "vibrant-color.typ"
 authors = ["SHA_foin", "RedPrismey"]
 license = "MIT"

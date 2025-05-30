@@ -111,6 +111,11 @@ The fonts are licensed under their own licenses.
 
 ## Changelog
 
+### 0.2.0
+
+- Adding heading numbering
+- Fixing the logo, cover and bibliography import
+
 ### 0.1.0
 
 - Initial release

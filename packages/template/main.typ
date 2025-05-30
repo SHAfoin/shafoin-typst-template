@@ -1,4 +1,4 @@
-#import "@preview/vibrant-color:0.1.0": *
+#import "@preview/vibrant-color:0.2.0": *
 
 // IMPORTANT : IF YOU WANT TO USE THE ORIGINAL FONTS 
 // - Download the font from https://github.com/SHAfoin/shafoin-typst-template/tree/main/font
@@ -17,8 +17,8 @@
   description: "This is an example of how to use this template.",
   date: datetime(day: 10, month: 3, year: 2025),
   subject: "Mathematics",
-  // bib-yaml: "./refs.yaml",
-  // logo: "./my_logo.png",
+  // bib-yaml: bibliography("refs.yaml"),
+  // logo: image("logo.png", width: 33%),
   doc
 )
 

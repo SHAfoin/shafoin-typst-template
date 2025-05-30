@@ -112,6 +112,11 @@ Les polices sont sous leurs propres licences.
 
 ## Changelog
 
+### 0.2.0
+
+- Adding heading numbering
+- Fixing the logo, cover and bibliography import
+
 ### 0.1.0
 
 - Initial release
