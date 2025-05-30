@@ -2,7 +2,7 @@
   title: none, // title of the document
   date: none, // date of the document, type: datetime
   authors: (), // array of authors
-  sub-authors: "4A ICY", // optional text above authors, e.g. group 2, 4A ICY
+  sub-authors: "TEAM 1", // optional text above authors, e.g. group 2
   subject: none, // subject of the document or text at the bottom
   description: none, // document description
   bib-yaml: none, // reference to a bibliography
