@@ -105,6 +105,7 @@ On peut #strike[barrer du texte], mettre du texte en *gras*, en _italique_, ou *
 *Délimiteur* : 
 
 #line(length: 100%)
+#line(length: 100%, stroke: (dash: "dashed"))
 
 *Référence bibliographique* : Il suffit de fournir un fichier bibliographique YAML (voir exemple). Il permet de stocker nos références bibliographiques et de les citer dans le texte. Il faut préciser le nom du fichier dans l'attribut "bib-yaml" de la fonction insa-report. Une section "BIBLIOGRAPHIE" apparait alors automatiquement à la fin de notre rapport. On cite un document de la bibliographie de la même manière que les références. Exemple : @harry
 
