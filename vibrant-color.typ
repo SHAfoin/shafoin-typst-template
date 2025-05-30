@@ -123,7 +123,7 @@
             fill: white,
             hyphenate: false,
             weight: "regular",
-            description,
+            strong(description),
           ),
         ),
       ),
@@ -568,7 +568,7 @@
           fill: white,
           font: normal-fonts,
           weight: "regular",
-          description,
+          strong(description),
         ),)
         
       ),

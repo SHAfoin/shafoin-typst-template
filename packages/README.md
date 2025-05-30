@@ -114,6 +114,7 @@ The fonts are licensed under their own licenses.
 ### 0.2.1
 
 - Bug fix for the bibliography numbering
+- Description cover & back in bold for better visibility
 
 ### 0.2.0
 
