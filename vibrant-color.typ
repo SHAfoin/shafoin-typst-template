@@ -516,7 +516,7 @@
   *  ------------------------------------------- */
 
   set bibliography(full: true)
-  show bibliography: set heading(numbering: heading-style)
+  show bibliography: set heading(numbering: if heading-numbering {heading-style} else {none})
 
   if bib-yaml != none {
     pagebreak()

@@ -112,6 +112,10 @@ Les polices sont sous leurs propres licences.
 
 ## Changelog
 
+### 0.2.1
+
+- Bug fix for the bibliography numbering
+
 ### 0.2.0
 
 - Adding heading numbering
