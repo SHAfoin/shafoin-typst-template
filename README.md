@@ -117,6 +117,7 @@ Les polices sont sous leurs propres licences.
 - Bug fix for the bibliography numbering
 - Description cover & back in bold for better visibility
 - Changing default sub-authors
+- Bug fix for the page counter not centered
 
 ### 0.2.0
 
